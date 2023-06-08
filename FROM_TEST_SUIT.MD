@@ -85,3 +85,21 @@
 | SECTION     | [openEHR-EHR-SECTION.adhoc.v1]                       | 2 result;JSON with _archetype_node_id = openEHR-EHR-SECTION.adhoc.v1                              |
 | SECTION     | [openEHR-EHR-SECTION.adhoc.v1,'Section 1']           | 1 result;JSON with _archetype_node_id = openEHR-EHR-SECTION.adhoc.v1   and name/value='Section 1' |
 
+## contains (FROM A-D)[https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#SELECT-([inlineCard])]
+### contains plus contain chaining
+1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
+2. Create ehr
+3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
+4. Run Query 'Select `SELECT o FROM {from}`
+
+| from                                                                                         | expected result                                              |
+|----------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| COMPOSITION contains Observation o                                                           | 5 result;JSON with _type = OBSERVATION                       |
+| SECTION contains Observation o                                                               | 5 result;JSON with _type = OBSERVATION                       |
+| SECTION [openEHR-EHR-SECTION.adhoc.v1] contains Observation o                                | 2 result;JSON with _type = OBSERVATION                       |
+| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o                  | 3 result;JSON with _type = OBSERVATION                       |
+| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o contains Cluster | 1 result;JSON with _type = OBSERVATION                       |
+| Observation o contains Cluster                                                               | 1 result;JSON with _type = OBSERVATION                       |
+| Observation o contains INTERVAL_EVENT                                                        | 2 result;JSON with _type = OBSERVATION                       |
+| Observation o contains INTERVAL_EVENT contains CLUSTER                                       | 1 result;JSON with _type = OBSERVATION                       |
+| EVENT o contains CLUSTER                                                                     | 2 result;JSON with _type in {1 INTERVAL_EVENT,1 POINT_EVENT} |

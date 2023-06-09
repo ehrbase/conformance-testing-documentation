@@ -77,13 +77,13 @@
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
 4. Run Query 'Select `SELECT t FROM {type} t {predicate}`
 
-| type        | predicate                                            | expected result                                                                                   |
-|-------------|------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| OBSERVATION | [openEHR-EHR-OBSERVATION.conformance_observation.v0] | 4 result;JSON with _archetype_node_id = openEHR-EHR-OBSERVATION.conformance_observation.v0        |
-| OBSERVATION | [openEHR-EHR-OBSERVATION.blood_pressure.v2]          | 1 result;JSON with _archetype_node_id = openEHR-EHR-OBSERVATION.blood_pressure.v2                 |
-| SECTION     | [openEHR-EHR-SECTION.conformance_section.v0]         | 1 result;JSON with _archetype_node_id = openEHR-EHR-SECTION.conformance_section.v0                |
-| SECTION     | [openEHR-EHR-SECTION.adhoc.v1]                       | 2 result;JSON with _archetype_node_id = openEHR-EHR-SECTION.adhoc.v1                              |
-| SECTION     | [openEHR-EHR-SECTION.adhoc.v1,'Section 1']           | 1 result;JSON with _archetype_node_id = openEHR-EHR-SECTION.adhoc.v1   and name/value='Section 1' |
+| type        | predicate                                            | expected result                                                                                  |
+|-------------|------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| OBSERVATION | [openEHR-EHR-OBSERVATION.conformance_observation.v0] | 4 result;JSON with archetype_node_id = openEHR-EHR-OBSERVATION.conformance_observation.v0        |
+| OBSERVATION | [openEHR-EHR-OBSERVATION.blood_pressure.v2]          | 1 result;JSON with archetype_node_id = openEHR-EHR-OBSERVATION.blood_pressure.v2                 |
+| SECTION     | [openEHR-EHR-SECTION.conformance_section.v0]         | 1 result;JSON with archetype_node_id = openEHR-EHR-SECTION.conformance_section.v0                |
+| SECTION     | [openEHR-EHR-SECTION.adhoc.v1]                       | 2 result;JSON with archetype_node_id = openEHR-EHR-SECTION.adhoc.v1                              |
+| SECTION     | [openEHR-EHR-SECTION.adhoc.v1,'Section 1']           | 1 result;JSON with archetype_node_id = openEHR-EHR-SECTION.adhoc.v1   and name/value='Section 1' |
 
 ## contains (FROM A-D)[https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#SELECT-([inlineCard])]
 ### contains plus contain chaining
@@ -103,3 +103,18 @@
 | Observation o contains INTERVAL_EVENT                                                        | 2 result;JSON with _type = OBSERVATION  and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9 }                                                                                |
 | Observation o contains INTERVAL_EVENT contains CLUSTER                                       | 1 result;JSON with _type = OBSERVATION   and uuid in {1 d4cccdfc-9c90-402f-b4bb-94e8dc4ea429,1 893506a7-462b-40b8-9638-0aa3990642d9 }                                        |
 | EVENT o contains CLUSTER                                                                     | 2 result;JSON with _type in {1 INTERVAL_EVENT,1 POINT_EVENT}                                                                                                                 |
+
+### contains with repeating types
+
+1. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
+2. Create ehr
+3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
+4. Run Query 'Select `SELECT o FROM {from}`
+
+   | from                                | expected result                                                                                                         |
+   |-------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+   | SECTION  o                          | 2 result;JSON with archetype_node_id in {1 openEHR-EHR-SECTION.adhoc.v1 , 1 openEHR-EHR-SECTION.conformance_section.v0} |
+   | SECTION contains SECTION  o         | 1 result;JSON with archetype_node_id in { 1 openEHR-EHR-SECTION.conformance_section.v0}                                 |                                                                                                                                       
+   | CLUSTER  o                          | 3 result;JSON with archetype_node_id in {1 openEHR-EHR-CLUSTER.cluster_with_cluster.v0 , 1 at0005, 1 at0003}            |
+   | CLUSTER contains CLUSTER  o         | 2 result;JSON with archetype_node_id in { 1 at0005, 1 at0003}                                                           |
+   | CLUSTER contains CLUSTER  o [at005] | 1 result;JSON with archetype_node_id in { 1 at0005}                                                                     |

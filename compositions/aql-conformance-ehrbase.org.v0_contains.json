@@ -311,7 +311,11 @@
         } ],
         "archetype_node_id" : "at0001"
       },
-      "archetype_node_id" : "openEHR-EHR-OBSERVATION.conformance_observation.v0"
+      "archetype_node_id" : "openEHR-EHR-OBSERVATION.conformance_observation.v0",
+      "uid" : {
+        "_type" : "HIER_OBJECT_ID",
+        "value" : "893506a7-462b-40b8-9638-0aa3990642d9"
+      }
     }, {
       "_type" : "OBSERVATION",
       "name" : {
@@ -436,7 +440,11 @@
         } ],
         "archetype_node_id" : "at0001"
       },
-      "archetype_node_id" : "openEHR-EHR-OBSERVATION.conformance_observation.v0"
+      "archetype_node_id" : "openEHR-EHR-OBSERVATION.conformance_observation.v0",
+      "uid" : {
+        "_type" : "HIER_OBJECT_ID",
+        "value" : "d4cccdfc-9c90-402f-b4bb-94e8dc4ea429"
+      }
     }, {
       "_type" : "OBSERVATION",
       "name" : {
@@ -693,7 +701,11 @@
         } ],
         "archetype_node_id" : "at0001"
       },
-      "archetype_node_id" : "openEHR-EHR-OBSERVATION.blood_pressure.v2"
+      "archetype_node_id" : "openEHR-EHR-OBSERVATION.blood_pressure.v2",
+      "uid" : {
+        "_type" : "HIER_OBJECT_ID",
+        "value" : "2183807d-af68-41c5-9bfe-28cd150d62f7"
+      }
     } ],
     "archetype_node_id" : "openEHR-EHR-SECTION.conformance_section.v0"
   }, {
@@ -788,7 +800,11 @@
         } ],
         "archetype_node_id" : "at0001"
       },
-      "archetype_node_id" : "openEHR-EHR-OBSERVATION.conformance_observation.v0"
+      "archetype_node_id" : "openEHR-EHR-OBSERVATION.conformance_observation.v0",
+      "uid" : {
+        "_type" : "HIER_OBJECT_ID",
+        "value" : "55415141-17e4-4c71-9429-aa0fe6694c83"
+      }
     } ],
     "archetype_node_id" : "openEHR-EHR-SECTION.adhoc.v1"
   }, {
@@ -883,7 +899,11 @@
         } ],
         "archetype_node_id" : "at0001"
       },
-      "archetype_node_id" : "openEHR-EHR-OBSERVATION.conformance_observation.v0"
+      "archetype_node_id" : "openEHR-EHR-OBSERVATION.conformance_observation.v0",
+      "uid" : {
+        "_type" : "HIER_OBJECT_ID",
+        "value" : "94c0e756-e892-4985-884b-46829605a236"
+      }
     } ],
     "archetype_node_id" : "openEHR-EHR-SECTION.adhoc.v1"
   } ],

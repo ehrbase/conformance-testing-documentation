@@ -92,14 +92,14 @@
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
 4. Run Query 'Select `SELECT o FROM {from}`
 
-| from                                                                                         | expected result                                              |
-|----------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| COMPOSITION contains Observation o                                                           | 5 result;JSON with _type = OBSERVATION                       |
-| SECTION contains Observation o                                                               | 5 result;JSON with _type = OBSERVATION                       |
-| SECTION [openEHR-EHR-SECTION.adhoc.v1] contains Observation o                                | 2 result;JSON with _type = OBSERVATION                       |
-| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o                  | 3 result;JSON with _type = OBSERVATION                       |
-| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o contains Cluster | 1 result;JSON with _type = OBSERVATION                       |
-| Observation o contains Cluster                                                               | 1 result;JSON with _type = OBSERVATION                       |
-| Observation o contains INTERVAL_EVENT                                                        | 2 result;JSON with _type = OBSERVATION                       |
-| Observation o contains INTERVAL_EVENT contains CLUSTER                                       | 1 result;JSON with _type = OBSERVATION                       |
-| EVENT o contains CLUSTER                                                                     | 2 result;JSON with _type in {1 INTERVAL_EVENT,1 POINT_EVENT} |
+| from                                                                                         | expected result                                                                                                                                                              |
+|----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| COMPOSITION contains Observation o                                                           | 5 result;JSON with _type = OBSERVATION                                                                                                                                       |
+| SECTION contains Observation o                                                               | 5 result;JSON with _type = OBSERVATION                                                                                                                                       |
+| SECTION [openEHR-EHR-SECTION.adhoc.v1] contains Observation o                                | 2 result;JSON with _type = OBSERVATION and uuid in {1 55415141-17e4-4c71-9429-aa0fe6694c83, 1 94c0e756-e892-4985-884b-46829605a236}                                          |
+| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o                  | 3 result;JSON with _type = OBSERVATION and uuid in {1 2183807d-af68-41c5-9bfe-28cd150d62f7, 1 d4cccdfc-9c90-402f-b4bb-94e8dc4ea429, 1 893506a7-462b-40b8-9638-0aa3990642d9 } |
+| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o contains Cluster | 1 result;JSON with _type = OBSERVATION and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9 }                                                                                 |
+| Observation o contains Cluster                                                               | 1 result;JSON with _type = OBSERVATION and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9 }                                                                                 |
+| Observation o contains INTERVAL_EVENT                                                        | 2 result;JSON with _type = OBSERVATION  and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9 }                                                                                |
+| Observation o contains INTERVAL_EVENT contains CLUSTER                                       | 1 result;JSON with _type = OBSERVATION   and uuid in {1 d4cccdfc-9c90-402f-b4bb-94e8dc4ea429,1 893506a7-462b-40b8-9638-0aa3990642d9 }                                        |
+| EVENT o contains CLUSTER                                                                     | 2 result;JSON with _type in {1 INTERVAL_EVENT,1 POINT_EVENT}                                                                                                                 |

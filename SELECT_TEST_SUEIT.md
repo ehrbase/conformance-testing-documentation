@@ -7,7 +7,7 @@
 1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
 2. Create ehr
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
-4. Run Query 'Select `SELECT c AS full FROM COMPOSITIONS C`
+4. Run Query 'Select `SELECT c AS full FROM COMPOSITIONS c`
 5. Check that the column c is named full in the result
 
 ## DISTINCT  [General keywords A-D](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#AS(%5BinlineCard%5D-))
@@ -27,11 +27,11 @@
 1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
 2. Create ehr
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
-4. Run Query 'Select `SELECT c FROM COMPOSITION C`
+4. Run Query 'Select `SELECT c FROM COMPOSITION c`
 5. Check return is the whole composition
-6. Run Query 'Select `SELECT c/uid FROM COMPOSITION C`
+6. Run Query 'Select `SELECT c/uid FROM COMPOSITION c`
 7. Check return is a json of type _OBJECT_VERSION_ID
-8. Run Query 'Select `SELECT c/uid/value FROM COMPOSITION C`
+8. Run Query 'Select `SELECT c/uid/value FROM COMPOSITION c`
 9. Check return is a String with the uid
 
 ### Paths within same hierarchy level I

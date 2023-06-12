@@ -62,7 +62,7 @@
 1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
-4. Run Query 'Select `SELECT i/start_time/value FROM EVENT_CONTEXT c`
+4. Run Query 'Select `SELECT c/start_time/value FROM EVENT_CONTEXT c`
 5. Returns 1 Row "2021-12-21T14:19:31.649613+01:00"
 
 ### multi selects

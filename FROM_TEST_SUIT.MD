@@ -130,4 +130,4 @@
    | SECTION contains SECTION  o         | 1 result;JSON with archetype_node_id in { 1 openEHR-EHR-SECTION.conformance_section.v0}                                 |                                                                                                                                       
    | CLUSTER  o                          | 3 result;JSON with archetype_node_id in {1 openEHR-EHR-CLUSTER.cluster_with_cluster.v0 , 1 at0005, 1 at0003}            |
    | CLUSTER contains CLUSTER  o         | 2 result;JSON with archetype_node_id in { 1 at0005, 1 at0003}                                                           |
-   | CLUSTER contains CLUSTER  o [at005] | 1 result;JSON with archetype_node_id in { 1 at0005}                                                                     |
+   | CLUSTER contains CLUSTER  o [at0005] | 1 result;JSON with archetype_node_id in { 1 at0005}                                                                     |

@@ -121,7 +121,7 @@
 
 1. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
 2. Create ehr
-3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
+3. Create composition `type_repetition_conformance_ehrbase.org_one_reptation.json`
 4. Run Query 'Select `SELECT o FROM COMPOSITION contains {from}`
 
    | from                                | expected result                                                                                                         |

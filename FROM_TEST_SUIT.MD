@@ -48,6 +48,7 @@
 | ITEM_TREE      | 14 result;JSON with _type = ITEM_TREE     |
 | CLUSTER        | 3 result;JSON with _type = CLUSTER        |
 
+
 ### TEST FROM abstract types
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist
 2. Create ehr
@@ -61,6 +62,18 @@
 | ITEM_STRUCTURE | 14 result;JSON with _type in ( 14 ITEM_TREE)                                                      |
 | DATA_STRUCTURE | 15 result;JSON with _type in (1 HISTORY ,14 ITEM_TREE)                                            |
 
+### TEST FROM ITEM_STRUCTURE in composition
+1. Upload `conformance_ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max.json`
+4. Run Query 'Select `SELECT t FROM COMPOSITION contains {type} t`
+
+| type           | expected result                                        |
+|----------------|--------------------------------------------------------|
+| ITEM_TREE      | 14 result;JSON with _type = ITEM_TREE                  |
+| CLUSTER        | 3 result;JSON with _type = CLUSTER                     |
+| ITEM_STRUCTURE | 14 result;JSON with _type in ( 14 ITEM_TREE)           |
+| DATA_STRUCTURE | 15 result;JSON with _type in (1 HISTORY ,14 ITEM_TREE) |
 
 ## Test FROM Predicate [Predicate A - D](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#Predicates)   
 
@@ -109,7 +122,7 @@
 1. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
 2. Create ehr
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
-4. Run Query 'Select `SELECT o FROM {from}`
+4. Run Query 'Select `SELECT o FROM COMPOSITION contains {from}`
 
    | from                                | expected result                                                                                                         |
    |-------------------------------------|-------------------------------------------------------------------------------------------------------------------------|

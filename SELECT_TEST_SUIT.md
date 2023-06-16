@@ -73,7 +73,7 @@
 4. Create 2 times composition `aql-conformance-ehrbase.org.v0_contains.json`
 5. Save composition id as {c_uid1} and {c_uid2}
 6. Run Query '
-   Select `SELECT e/ehr_id/value, c/uid/value , o/uid/value, p/time/value FROM EHR e COMPOSITION c CONTIANS OBSRVATION O Contains POINT_EVENT p`
+   Select `SELECT e/ehr_id/value, c/uid/value, o/uid/value, p/time/value FROM EHR e CONTAINS COMPOSITION c CONTAINS OBSERVATION o CONTAINS POINT_EVENT p`
 7. in any order 8 Rows
 
 | e/ehr_id/value | c/uid/value | o/uid/value                          | p/time/value        |

@@ -23,7 +23,7 @@
 | c/uid/value = {comp_id_2}                                         | {ehr_id_2}     | {comp_id_2} |
 | c/uid/value != {comp_id_1}                                        | {ehr_id_2}     | {comp_id_2} |
 | c/uid/value != {comp_id_2}                                        | {ehr_id_1}     | {comp_id_1} |
-| c/archetype_details/template_id/value = conformance_ehrbase.de.v0 | {ehr_id_1}     | {comp_id_1} |
+| c/archetype_details/template_id/value = conformance-ehrbase.de.v0 | {ehr_id_1}     | {comp_id_1} |
 | c/name/value = type_repetition_conformance_ehrbase.org            | {ehr_id_2}     | {comp_id_2} |
 
 ### Compare with extracted column II  https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#WHERE

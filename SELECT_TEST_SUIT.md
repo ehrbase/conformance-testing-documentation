@@ -7,7 +7,7 @@
 1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
 2. Create ehr
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
-4. Run Query 'Select `SELECT c AS full FROM COMPOSITIONS c`
+4. Run Query 'Select `SELECT c AS full FROM COMPOSITION c`
 5. Check that the column c is named full in the result
 
 ## DISTINCT  [General keywords A-D](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#AS(%5BinlineCard%5D-))
@@ -15,9 +15,9 @@
 1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
 2. Create ehr
 3. Create 2 x composition `aql-conformance-ehrbase.org.v0_contains.json`
-4. Run Query 'Select `SELECT e/ehr_id/value AS full FROM EHR e contains COMPOSITIONS C`
+4. Run Query 'Select `SELECT e/ehr_id/value AS full FROM EHR e contains COMPOSITION C`
 5. Check Result 2 Rows
-6. Run Query 'Select `SELECT DISTINCT e/ehr_id/value AS full FROM EHR e contains COMPOSITIONS C`
+6. Run Query 'Select `SELECT DISTINCT e/ehr_id/value AS full FROM EHR e contains COMPOSITION C`
 7. Check Result 1 Rows
 
 ## Identified Path [Feature A-D](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#Identified-Path-(%5BinlineCard%5D))

@@ -34,7 +34,7 @@
 
 | {where}                                                                    | o/uid/value                                                                     |
 |----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| o/archetype_node_id = "openEHR-EHR-OBSERVATION.conformance_observation.v0" | Returns 2 observations with o/uid/value = ["94c0e756-e892-4985-884b-46829605a236","d4cccdfc-9c90-402f-b4bb-94e8dc4ea429"] |
+| o/archetype_node_id = "openEHR-EHR-OBSERVATION.conformance_observation.v0" | Returns 4 observations with o/uid/value = ["94c0e756-e892-4985-884b-46829605a236","d4cccdfc-9c90-402f-b4bb-94e8dc4ea429","55415141-17e4-4c71-9429-aa0fe6694c83","893506a7-462b-40b8-9638-0aa3990642d9"] |
 | o/name/value = "Blood pressure"                                            | Returns 1 observation with o/uid/value = "2183807d-af68-41c5-9bfe-28cd150d62f7"                                          |
 
 

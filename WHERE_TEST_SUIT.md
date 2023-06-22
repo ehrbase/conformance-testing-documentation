@@ -30,13 +30,13 @@
 1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
 2. Create ehr
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
-4. Run Query 'Select `SELECT o/uid/value FROM COMPOSITION contains OBSERVATION o where {where}`
+4. Run Query 'Select `SELECT o FROM COMPOSITION contains OBSERVATION o where {where}`
 
 | {where}                                                                    | o/uid/value                                                                     |
 |----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| o/uid/value = "94c0e756-e892-4985-884b-46829605a236"                       | "94c0e756-e892-4985-884b-46829605a236"                                          |
-| o/archetype_node_id = "openEHR-EHR-OBSERVATION.conformance_observation.v0" | ["94c0e756-e892-4985-884b-46829605a236","d4cccdfc-9c90-402f-b4bb-94e8dc4ea429"] |
-| o/name/value = "Blood pressure"                                            | "2183807d-af68-41c5-9bfe-28cd150d62f7"                                          |
+| o/uid/value = "94c0e756-e892-4985-884b-46829605a236"                       | Returns 1 composition with o/uid/value = "94c0e756-e892-4985-884b-46829605a236"                                          |
+| o/archetype_node_id = "openEHR-EHR-OBSERVATION.conformance_observation.v0" | Returns 2 compositions with o/uid/value = ["94c0e756-e892-4985-884b-46829605a236","d4cccdfc-9c90-402f-b4bb-94e8dc4ea429"] |
+| o/name/value = "Blood pressure"                                            | Returns 1 composition with o/uid/value = "2183807d-af68-41c5-9bfe-28cd150d62f7"                                          |
 
 
 

@@ -34,9 +34,9 @@
 
 | {where}                                                                    | o/uid/value                                                                     |
 |----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| o/uid/value = "94c0e756-e892-4985-884b-46829605a236"                       | Returns 1 composition with o/uid/value = "94c0e756-e892-4985-884b-46829605a236"                                          |
-| o/archetype_node_id = "openEHR-EHR-OBSERVATION.conformance_observation.v0" | Returns 2 compositions with o/uid/value = ["94c0e756-e892-4985-884b-46829605a236","d4cccdfc-9c90-402f-b4bb-94e8dc4ea429"] |
-| o/name/value = "Blood pressure"                                            | Returns 1 composition with o/uid/value = "2183807d-af68-41c5-9bfe-28cd150d62f7"                                          |
+| o/uid/value = "94c0e756-e892-4985-884b-46829605a236"                       | Returns 1 observation with o/uid/value = "94c0e756-e892-4985-884b-46829605a236"                                          |
+| o/archetype_node_id = "openEHR-EHR-OBSERVATION.conformance_observation.v0" | Returns 2 observations with o/uid/value = ["94c0e756-e892-4985-884b-46829605a236","d4cccdfc-9c90-402f-b4bb-94e8dc4ea429"] |
+| o/name/value = "Blood pressure"                                            | Returns 1 observation with o/uid/value = "2183807d-af68-41c5-9bfe-28cd150d62f7"                                          |
 
 
 

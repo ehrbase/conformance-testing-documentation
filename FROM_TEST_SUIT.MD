@@ -39,14 +39,14 @@
 3. Create composition  `conformance_ehrbase.de.v0_max.json` 
 4. Run Query 'Select `SELECT t FROM {type} t`
   
-| type           | expected result                           |
-|----------------|-------------------------------------------|
-| FEEDER_AUDIT   | 5 result;JSON with _type = FEEDER_AUDIT   |
-| HISTORY        | one result;JSON with name/value = History |
-| POINT_EVENT    | one result;JSON with _type = POINT_EVENT  |
-| INTERVAL_EVENT | 2 result;JSON with _type = INTERVAL_EVENT |
-| ITEM_TREE      | 14 result;JSON with _type = ITEM_TREE     |
-| CLUSTER        | 3 result;JSON with _type = CLUSTER        |
+| type           | expected result                                                                            |
+|----------------|--------------------------------------------------------------------------------------------|
+| FEEDER_AUDIT   | 5 result;JSON with _type = FEEDER_AUDIT                                                    |
+| HISTORY        | one result;JSON with name/value = History                                                  |
+| POINT_EVENT    | one result;JSON with _type = POINT_EVENT                                                   |
+| INTERVAL_EVENT | 2 result;JSON with _type = INTERVAL_EVENT                                                  |
+| ITEM_TREE      | 400 status code; message: "It is unclear if ITEM_TREE targets a COMPOSITION or EHR_STATUS" |
+| CLUSTER        | 400 status code; message: "It is unclear if CLUSTER targets a COMPOSITION or EHR_STATUS"   |
 
 
 ### TEST FROM abstract types
@@ -59,8 +59,8 @@
 |----------------|---------------------------------------------------------------------------------------------------|
 | ENTRY          | 5 result;JSON with _type in (1 ADMIN_ENTRY, 1 OBSERVATION, 1 INSTRUCTION, 1 ACTION, 1 EVALUATION) |
 | CARE_ENTRY     | 4 result;JSON with _type in ( 1 OBSERVATION, 1 INSTRUCTION, 1 ACTION, 1 EVALUATION)               |
-| ITEM_STRUCTURE | 14 result;JSON with _type in ( 14 ITEM_TREE)                                                      |
-| DATA_STRUCTURE | 15 result;JSON with _type in (1 HISTORY ,14 ITEM_TREE)                                            |
+| ITEM_STRUCTURE | 400 status code; message: "It is unclear if ITEM_STRUCTURE targets a COMPOSITION or EHR_STATUS"   |
+| DATA_STRUCTURE | 400 status code; message starts with: "CONTAINS DATA_STRUCTURE is not supported"                  |
 
 ### TEST FROM ITEM_STRUCTURE in composition
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist

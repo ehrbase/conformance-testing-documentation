@@ -62,6 +62,25 @@
 |-------------------------------------------------|-----------------------------------------------------|
 | e/ehr_id/value matches {{ehr_id_1}, {ehr_id_2}} | ["{ehr_id_1},{comp_id_1}","{ehr_id_2},{comp_id_2}"] |
 | e/ehr_id/value matches {{ehr_id_1}, {ehr_id_3}} | ["{ehr_id_1},{comp_id_1}","{ehr_id_3},{comp_id_3}"] |
+## like [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#WHERE)
+### like with extracted column 
+1. Upload `conformance_ehrbase.de.v0.opt` if not exist
+2. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
+3. Create ehr
+4. Save ehr_id as {ehr_id_1}
+5. Create composition  `conformance_ehrbase.de.v0_max.json`
+6. Save comp_id as {comp_id_1}
+7. Create ehr
+8. Save ehr_id as {ehr_id_2}
+9. Create composition  `type_repetition_conformance_ehrbase.org_one_reptation.json`
+10. Save comp_id as {comp_id_2}
+11. Run Query "SELECT c/name/value, c/uid/value from EHR e CONTAINS COMPOSITION c WHERE c/name/value {like}"
+
+| {like}                                  | c/name/value                                                        | c/uid/value               |
+|-----------------------------------------|---------------------------------------------------------------------|---------------------------|
+| type_repetition_conformance_ehrbase.org | type_repetition_conformance_ehrbase.org                             | {comp_id_2}               |
+| type?repetition?conformance?ehrbase*    | type_repetition_conformance_ehrbase.org                             | {comp_id_2}               |
+| *ehrbase*                               | [conformance-ehrbase.de.v0,type_repetition_conformance_ehrbase.org] | [{comp_id_1},{comp_id_2}] |
 
 ## Boolean Operations
 ### Single  `AND` / `OR` [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#AND-%2F-OR.1)

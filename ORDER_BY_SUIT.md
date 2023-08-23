@@ -64,3 +64,69 @@
 |---------------------|---------|--------------------------------------------------------------------------------------------------------|
 | o/archetype_node_id | ASC     | 2 x openEHR-EHR-OBSERVATION.blood_pressure.v2 , 5 x openEHR-EHR-OBSERVATION.conformance_observation.v0 |
 | o/archetype_node_id | DESC    | 5 x openEHR-EHR-OBSERVATION.conformance_observation.v0, 2 x openEHR-EHR-OBSERVATION.blood_pressure.v2  |
+
+### ORDER by Paths within same hierarchy level I
+
+1. Upload `conformance-ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_known_date_type_1.json`
+4. Create composition  `conformance_ehrbase.de.v0_known_date_type_2.json`
+5. Run Query 'Select `SELECT {path} from EHR e CONTAINS COMPOSITION c  ORDER BY {path} {order}`
+
+| {path}          | {order} | result in order            |
+|-----------------|---------|----------------------------|
+| c/composer/name | ASC     | Anton Blake , Silvia Blake |
+| c/composer/name | DESC    | Silvia Blake,  Anton Blake |
+
+### ORDER by Paths within same hierarchy level II
+
+1. Upload `conformance-ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_known_date_type_1.json`
+4. Create composition  `conformance_ehrbase.de.v0_known_date_type_2.json`
+5. Run Query 'Select `SELECT {path} from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec ORDER BY {path} {order}`
+
+| {path}                                         | {order} | result in order                                                     |
+|------------------------------------------------|---------|---------------------------------------------------------------------|
+| ec/health_care_facility/external_ref/id/value  | ASC     | 9091, 9092                                                          |
+| ec/health_care_facility/external_ref/id/value  | DESC    | 9092, 9091                                                          |
+| ec/location                                    | ASC     | microbiology lab 2, Hospital                                        |
+| ec/location                                    | DESC    | Hospital, microbiology lab 2                                        |
+| ec/start_time                                  | ASC     | 2021-12-21T14:19:31.649613+01:00, 2022-12-21T14:19:31.649613+01:00  |
+| ec/start_time                                  | DESC    | 2022-12-21T14:19:31.649613+01:00,  2021-12-21T14:19:31.649613+01:00 |
+| ec/start_time/value                            | ASC     | 2021-12-21T14:19:31.649613+01:00, 2022-12-21T14:19:31.649613+01:00  |
+| ec/start_time/value                            | DESC    | 2022-12-21T14:19:31.649613+01:00,  2021-12-21T14:19:31.649613+01:00 |
+
+### ORDER by Paths within same hierarchy level III
+
+1. Upload `conformance-ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_known_date_type_1.json`
+4. Create composition  `conformance_ehrbase.de.v0_known_date_type_2.json`
+5. Run Query 'Select `SELECT {path} from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec contains INTERVAL_EVENT i ORDER BY {path} {order}`
+
+| {path}         | {order} | result in order |
+|----------------|---------|-----------------|
+| i/sample_count | ASC     | 5, 10           |
+| i/sample_count | DESC    | 10, 5           |
+| i/width        | ASC     | P40D, P30M      |
+| i/width        | DESC    | P30M, P40D      |
+| i/width/value  | ASC     | P30M, P40D      |
+| i/width/value  | DESC    | P40D, P30M      |
+
+## Multiple Order BY
+
+### Order BY on extracted columns IV
+1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
+2. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
+3. Create ehr 
+4. Create composition  `aql-conformance-ehrbase.org.v0_contains.json`
+5. Create composition  `type_repetition_conformance_ehrbase.org_one_reptation.json` 
+6. Run Query "SELECT c/name/value,o/name/value from EHR e CONTAINS COMPOSITION c CONTAINS OBSERVATION o  ORDER BY c/name/value {order1}, o/name/value {order2}"
+
+| {order1} | {order2} | result in order                                                                                                                                                                             |
+|----------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ASC      | ASC      | 2x {aql-conformance-ehrbase.org.v0, Blood pressure },4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation },{type_repetition_conformance_ehrbase.org,Conformance Observation }    |
+| DESC     | DESC     | {type_repetition_conformance_ehrbase.org,Conformance Observation }, 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } ,2x {aql-conformance-ehrbase.org.v0, Blood pressure }  |
+| ASC      | DESC     | 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } ,2x {aql-conformance-ehrbase.org.v0, Blood pressure }, {type_repetition_conformance_ehrbase.org,Conformance Observation }  |
+| DESC     | ASC      | {type_repetition_conformance_ehrbase.org,Conformance Observation }, 2x {aql-conformance-ehrbase.org.v0, Blood pressure }, 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation }  |

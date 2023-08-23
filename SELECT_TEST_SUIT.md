@@ -51,7 +51,7 @@
 
 ### Paths within same hierarchy level II
 
-1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
+1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
 4. Run Query 'Select `SELECT i/narrative/value FROM INSTRUCTION i`
@@ -59,7 +59,7 @@
 
 ### Paths within same hierarchy level III
 
-1. Upload `aql-conformance-ehrbase.org.v0.opt` if not exist
+1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
 4. Run Query 'Select `SELECT c/start_time/value FROM EVENT_CONTEXT c`

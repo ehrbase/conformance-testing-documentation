@@ -49,23 +49,23 @@
       "type": "PARTY",
       "id": {
         "_type": "GENERIC_ID",
-        "value": "1234-5677",
+        "value": "1234-5678",
         "scheme": "UUID"
       }
     },
-    "name": "Anton Blake"
+    "name": "Silvia Blake"
   },
   "context": {
     "_type": "EVENT_CONTEXT",
     "start_time": {
       "_type": "DV_DATE_TIME",
-      "value": "2021-12-21T14:19:31.649613+01:00"
+      "value": "2022-12-21T14:19:31.649613+01:00"
     },
     "end_time": {
       "_type": "DV_DATE_TIME",
-      "value": "2021-12-21T15:19:31.649613+01:00"
+      "value": "2022-12-21T15:19:31.649613+01:00"
     },
-    "location": "microbiology lab 2",
+    "location": "Hospital",
     "setting": {
       "_type": "DV_CODED_TEXT",
       "value": "other care",
@@ -86,11 +86,11 @@
         "type": "PARTY",
         "id": {
           "_type": "GENERIC_ID",
-          "value": "9091",
+          "value": "9092",
           "scheme": "HOSPITAL-NS"
         }
       },
-      "name": "Hospital 1"
+      "name": "Hospital 2"
     }
   },
   "content": [
@@ -151,7 +151,7 @@
             },
             "origin": {
               "_type": "DV_DATE_TIME",
-              "value": "2021-02-03T04:05:06"
+              "value": "2022-02-03T04:05:06"
             },
             "events": [
               {
@@ -162,7 +162,7 @@
                 },
                 "time": {
                   "_type": "DV_DATE_TIME",
-                  "value": "2021-02-03T04:05:06"
+                  "value": "2022-02-03T04:05:06"
                 },
                 "data": {
                   "_type": "ITEM_TREE",
@@ -188,9 +188,9 @@
                 },
                 "width": {
                   "_type": "DV_DURATION",
-                  "value": "P40D"
+                  "value": "P30M"
                 },
-                "sample_count": 5,
+                "sample_count": 10,
                 "math_function": {
                   "_type": "DV_CODED_TEXT",
                   "value": "mean",
@@ -211,7 +211,7 @@
           "archetype_node_id": "openEHR-EHR-OBSERVATION.conformance_observation.v0",
           "uid": {
             "_type": "HIER_OBJECT_ID",
-            "value": "9fcc1c70-9349-444d-b9cb-8fa817697f5e"
+            "value": "8fcc1c70-9349-444d-b9cb-8fa817697f5e"
           }
         }
       ],

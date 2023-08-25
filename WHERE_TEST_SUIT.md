@@ -32,10 +32,10 @@
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
 4. Run Query 'Select `SELECT o FROM COMPOSITION contains OBSERVATION o where {where}`
 
-| {where}                                                                    | o/uid/value                                                                     |
-|----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| {where}                                                                    | o/uid/value                                                                                                                                                                                             |
+|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | o/archetype_node_id = "openEHR-EHR-OBSERVATION.conformance_observation.v0" | Returns 4 observations with o/uid/value = ["94c0e756-e892-4985-884b-46829605a236","d4cccdfc-9c90-402f-b4bb-94e8dc4ea429","55415141-17e4-4c71-9429-aa0fe6694c83","893506a7-462b-40b8-9638-0aa3990642d9"] |
-| o/name/value = "Blood pressure"                                            | Returns 1 observation with o/uid/value = "2183807d-af68-41c5-9bfe-28cd150d62f7"                                          |
+| o/name/value = "Blood pressure"                                            | Returns 1 observation with o/uid/value = "2183807d-af68-41c5-9bfe-28cd150d62f7"                                                                                                                         |
 
 
 
@@ -62,7 +62,9 @@
 |-------------------------------------------------|-----------------------------------------------------|
 | e/ehr_id/value matches {{ehr_id_1}, {ehr_id_2}} | ["{ehr_id_1},{comp_id_1}","{ehr_id_2},{comp_id_2}"] |
 | e/ehr_id/value matches {{ehr_id_1}, {ehr_id_3}} | ["{ehr_id_1},{comp_id_1}","{ehr_id_3},{comp_id_3}"] |
+
 ## like [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#WHERE)
+
 ### like with extracted column 
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist
 2. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist

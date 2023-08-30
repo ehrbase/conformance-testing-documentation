@@ -32,10 +32,10 @@
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
 4. Run Query 'Select `SELECT o FROM COMPOSITION contains OBSERVATION o where {where}`
 
-| {where}                                                                    | o/uid/value                                                                     |
-|----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| {where}                                                                    | o/uid/value                                                                                                                                                                                             |
+|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | o/archetype_node_id = "openEHR-EHR-OBSERVATION.conformance_observation.v0" | Returns 4 observations with o/uid/value = ["94c0e756-e892-4985-884b-46829605a236","d4cccdfc-9c90-402f-b4bb-94e8dc4ea429","55415141-17e4-4c71-9429-aa0fe6694c83","893506a7-462b-40b8-9638-0aa3990642d9"] |
-| o/name/value = "Blood pressure"                                            | Returns 1 observation with o/uid/value = "2183807d-af68-41c5-9bfe-28cd150d62f7"                                          |
+| o/name/value = "Blood pressure"                                            | Returns 1 observation with o/uid/value = "2183807d-af68-41c5-9bfe-28cd150d62f7"                                                                                                                         |
 
 
 
@@ -81,6 +81,46 @@
 | type_repetition_conformance_ehrbase.org | type_repetition_conformance_ehrbase.org                             | {comp_id_2}               |
 | type?repetition?conformance?ehrbase*    | type_repetition_conformance_ehrbase.org                             | {comp_id_2}               |
 | \*ehrbase\*                               | [conformance-ehrbase.de.v0,type_repetition_conformance_ehrbase.org] | [{comp_id_1},{comp_id_2}] |
+
+## like [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#WHERE)
+
+### like with extracted column 
+1. Upload `conformance_ehrbase.de.v0.opt` if not exist
+2. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
+3. Create ehr
+4. Save ehr_id as {ehr_id_1}
+5. Create composition  `conformance_ehrbase.de.v0_max.json`
+6. Save comp_id as {comp_id_1}
+7. Create ehr
+8. Save ehr_id as {ehr_id_2}
+9. Create composition  `type_repetition_conformance_ehrbase.org_one_reptation.json`
+10. Save comp_id as {comp_id_2}
+11. Run Query "SELECT c/name/value, c/uid/value from EHR e CONTAINS COMPOSITION c WHERE c/name/value LIKE {like}"
+
+| {like}                                  | c/name/value                                                        | c/uid/value               |
+|-----------------------------------------|---------------------------------------------------------------------|---------------------------|
+| type_repetition_conformance_ehrbase.org | type_repetition_conformance_ehrbase.org                             | {comp_id_2}               |
+| type?repetition?conformance?ehrbase*    | type_repetition_conformance_ehrbase.org                             | {comp_id_2}               |
+| \*ehrbase*                              | [conformance-ehrbase.de.v0,type_repetition_conformance_ehrbase.org] | [{comp_id_1},{comp_id_2}] |
+
+
+### like with extracted column II
+1. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
+2. Create ehr
+3. Create composition  `type_repetition_conformance_ehrbase.org_like.json`
+4. Run Query "SELECT s/name/value from EHR e CONTAINS COMPOSITION c CONTAINS SECTION s WHERE s/name/value LIKE {like}"
+
+| {like}     | c/name/value  |
+|------------|---------------|
+| Name%      | []            |
+| Name%_     | Name%_        |
+| *%_        | Name%_        |
+| Name*      | Name%_,Name*? |
+| Name\\*    | []            |
+| Name\\*\\? | Name*?        |
+| \*\\*\\?   | Name*?        |
+
+
 
 ## Boolean Operations
 ### Single  `AND` / `OR` [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#AND-%2F-OR.1)

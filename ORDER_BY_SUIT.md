@@ -100,8 +100,8 @@
 |-----------------------------------------------|---------|---------------------------------------------------------------------|
 | ec/health_care_facility/external_ref/id/value | ASC     | 9091, 9092                                                          |
 | ec/health_care_facility/external_ref/id/value | DESC    | 9092, 9091                                                          |
-| ec/location                                   | ASC     | microbiology lab 2, Hospital                                        |
-| ec/location                                   | DESC    | Hospital, microbiology lab 2                                        |
+| ec/location                                   | ASC     | Hospital ,microbiology lab 2                                        |
+| ec/location                                   | DESC    | microbiology lab 2, Hospital                                        |
 | ec/start_time                                 | ASC     | 2021-12-21T14:19:31.649613+01:00, 2022-12-21T14:19:31.649613+01:00  |
 | ec/start_time                                 | DESC    | 2022-12-21T14:19:31.649613+01:00,  2021-12-21T14:19:31.649613+01:00 |
 | ec/start_time/value                           | ASC     | 2021-12-21T14:19:31.649613+01:00, 2022-12-21T14:19:31.649613+01:00  |

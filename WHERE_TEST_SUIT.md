@@ -76,13 +76,32 @@
 8. Save ehr_id as {ehr_id_2}
 9. Create composition  `type_repetition_conformance_ehrbase.org_one_reptation.json`
 10. Save comp_id as {comp_id_2}
-11. Run Query "SELECT c/name/value, c/uid/value from EHR e CONTAINS COMPOSITION c WHERE c/name/value {like}"
+11. Run Query "SELECT c/name/value, c/uid/value from EHR e CONTAINS COMPOSITION c WHERE c/name/value LIKE {like}"
 
 | {like}                                  | c/name/value                                                        | c/uid/value               |
 |-----------------------------------------|---------------------------------------------------------------------|---------------------------|
 | type_repetition_conformance_ehrbase.org | type_repetition_conformance_ehrbase.org                             | {comp_id_2}               |
 | type?repetition?conformance?ehrbase*    | type_repetition_conformance_ehrbase.org                             | {comp_id_2}               |
-| *ehrbase*                               | [conformance-ehrbase.de.v0,type_repetition_conformance_ehrbase.org] | [{comp_id_1},{comp_id_2}] |
+| \*ehrbase*                              | [conformance-ehrbase.de.v0,type_repetition_conformance_ehrbase.org] | [{comp_id_1},{comp_id_2}] |
+
+
+### like with extracted column II
+1. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
+2. Create ehr
+3. Create composition  `type_repetition_conformance_ehrbase.org_like.json`
+4. Run Query "SELECT s/name/value from EHR e CONTAINS COMPOSITION c CONTAINS SECTION s WHERE s/name/value LIKE {like}"
+
+| {like}     | c/name/value  |
+|------------|---------------|
+| Name%      | []            |
+| Name%_     | Name%_        |
+| *%_        | Name%_        |
+| Name*      | Name%_,Name*? |
+| Name\\*    | []            |
+| Name\\*\\? | Name*?        |
+| \*\\*\\?   | Name*?        |
+
+
 
 ## Boolean Operations
 ### Single  `AND` / `OR` [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#AND-%2F-OR.1)

@@ -135,16 +135,18 @@
 
 ## Primitives
 ### Primitives in simple select
-1. Run Query 'SELECT {primitive} from ehr'
-2. Check result is equal to  {primitive}
+
+1. Create EHR
+2. Run Query 'SELECT {primitive} from ehr'
+3. Check result is equal to  {primitive}
 
 | {primitive}                        |
 |------------------------------------|
 | "A"                                |
 | 1                                  |
 | 1.1                                |
-| 3×102                              |
-| 7.51×10−9                          |
+| 3e102                              |
+| 7.51e10−9                          |
 | TRUE                               |
 | "2021-12-21T14:19:31.649613+01:00" |
 | NULL                               |
@@ -197,7 +199,7 @@
 | c/setting/defining_code/terminology_id       | one row with   ' {  "_type": "TERMINOLOGY_ID",  "value": "openehr"  }'                                                                                                                                           |
 | c/setting/defining_code/terminology_id/value | one row with    "openehr"                                                                                                                                                                                        |
 
-### Drill down EVENT-CONTEXT
+### Drill down OBSERVATION
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`

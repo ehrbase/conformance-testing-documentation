@@ -11,7 +11,7 @@
 6. Save comp_id as {comp_id_1}
 9. Create composition  `type_repetition_conformance_ehrbase.org_one_reptation.json`
 10. Save comp_id as {comp_id_2}
-11. Run Query "SELECT c/name/value from EHR e CONTAINS COMPOSITION c CONTAINS OBSERVATION o ORDER BY {order}"
+11. Run Query "SELECT c/name/value from EHR e CONTAINS COMPOSITION c ORDER BY {order}"
 
 | {order}                 | result in order                                                            |
 |-------------------------|----------------------------------------------------------------------------|
@@ -107,6 +107,8 @@
 | ec/start_time/value                           | ASC     | 2021-12-21T14:19:31.649613+01:00, 2022-12-21T14:19:31.649613+01:00  |
 | ec/start_time/value                           | DESC    | 2022-12-21T14:19:31.649613+01:00,  2021-12-21T14:19:31.649613+01:00 |
 
+
+
 ### ORDER by Paths within same hierarchy level III
 
 1. Upload `conformance-ehrbase.de.v0.opt` if not exist
@@ -125,13 +127,29 @@
 | i/width/value  | ASC     | P30M, P40D      |
 | i/width/value  | DESC    | P40D, P30M      |
 
+### ORDER by  DV_DATE
+
+1. Upload `conformance-ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_known_date_type_1.json`
+4. Create composition  `conformance_ehrbase.de.v0_known_date_type_2.json`
+5. Create composition  `conformance_ehrbase.de.v0_known_date_type_3.json`
+6. Create composition  `conformance_ehrbase.de.v0_known_date_type_5.json`
+5. Run Query 'Select `SELECT {path} from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec ORDER BY {path} {order}`
+
+| {path}                                        | {order} | result in order                                                                                                                       |
+|-----------------------------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------|
+| ec/start_time                                 | ASC     | 2021-12-21T14:19:31.649613+01:00,2021-12-21T15:19:31.649613+01:00,2021-12-21T14:19:31.649613+03:00, 2022-12-21T14:19:31.649613+01:00  |
+| ec/start_time                                 | DESC    | 2022-12-21T14:19:31.649613+01:00,2021-12-21T14:19:31.649613+03:00 ,2021-12-21T15:19:31.649613+01:00 ,2021-12-21T14:19:31.649613+01:00 |
+
+
 ### ORDER BY Path from Entry to DvOrdered
 
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
 4. Run Query '
-   Select `SELECT {path}/{spath} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] ORDER BY {path} {order}`
+   Select `SELECT {path}{spath} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] ORDER BY {path} {order}`
 
 | path                                                                    | spath      | order | result                                                       |
 |-------------------------------------------------------------------------|------------|-------|--------------------------------------------------------------|

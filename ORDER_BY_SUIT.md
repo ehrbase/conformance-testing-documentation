@@ -195,9 +195,9 @@
 6. Run Query "SELECT c/name/value,o/name/value from EHR e CONTAINS COMPOSITION c CONTAINS OBSERVATION o ORDER BY
    c/name/value {order1}, o/name/value {order2}"
 
-| {order1} | {order2} | result in order                                                                                                                                                                            |
-|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ASC      | ASC      | 2x {aql-conformance-ehrbase.org.v0, Blood pressure },4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation },{type_repetition_conformance_ehrbase.org,Conformance Observation }   |
-| DESC     | DESC     | {type_repetition_conformance_ehrbase.org,Conformance Observation }, 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } ,2x {aql-conformance-ehrbase.org.v0, Blood pressure } |
-| ASC      | DESC     | 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } ,2x {aql-conformance-ehrbase.org.v0, Blood pressure }, {type_repetition_conformance_ehrbase.org,Conformance Observation } |
-| DESC     | ASC      | {type_repetition_conformance_ehrbase.org,Conformance Observation }, 2x {aql-conformance-ehrbase.org.v0, Blood pressure }, 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } |
+| {order1} | {order2} | result in order                                                                                                                                                                          |
+|----------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ASC      | ASC      | {aql-conformance-ehrbase.org.v0, Blood pressure },4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation },{type_repetition_conformance_ehrbase.org,Conformance Observation }    |
+| DESC     | DESC     | {type_repetition_conformance_ehrbase.org,Conformance Observation }, 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } ,{aql-conformance-ehrbase.org.v0, Blood pressure }  |
+| ASC      | DESC     | 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } ,{aql-conformance-ehrbase.org.v0, Blood pressure }, {type_repetition_conformance_ehrbase.org,Conformance Observation }  |
+| DESC     | ASC      | {type_repetition_conformance_ehrbase.org,Conformance Observation },  {aql-conformance-ehrbase.org.v0, Blood pressure }, 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } |

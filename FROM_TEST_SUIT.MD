@@ -32,6 +32,7 @@
 | EVALUATION          | one result;JSON with _type = EVALUATION          |
 | INSTRUCTION_DETAILS | one result;JSON with _type = INSTRUCTION_DETAILS |
 | ACTIVITY            | one result;JSON with _type = ACTIVITY            |
+| ELEMENT             | 68 result;JSON with _type = ELEMENT              |
 
 ### TEST FROM Common types 
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist
@@ -116,6 +117,8 @@
 | Observation o contains INTERVAL_EVENT                                                        | 2 results;JSON with _type = OBSERVATION  and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9 }                                                                                 |
 | Observation o contains INTERVAL_EVENT contains CLUSTER                                       | 1 result;JSON with _type = OBSERVATION   and uuid in {1 d4cccdfc-9c90-402f-b4bb-94e8dc4ea429,1 893506a7-462b-40b8-9638-0aa3990642d9 }                                          |
 | EVENT o contains CLUSTER                                                                     | 2 results;JSON with _type in {1 INTERVAL_EVENT,1 POINT_EVENT}                                                                                                                  |
+| OBSERVATION [openEHR-EHR-OBSERVATION.blood_pressure.v2]  contains ELEMENT e[at0004]          | 1 results;JSON with name/value = 'Systolic'                                                                                                                                    |
+| CLUSTER [openEHR-EHR-CLUSTER.conformance_cluster.v0]  contains ELEMENT e[at0003]             | 3 results;JSON with name/value = 'labresult'                                                                                                                                   |
 
 ### contains with repeating types
 

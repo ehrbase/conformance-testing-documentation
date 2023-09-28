@@ -51,8 +51,8 @@
 
 | {path}                                | {order} | result in order                                                                                                        |
 |---------------------------------------|---------|------------------------------------------------------------------------------------------------------------------------|
-| c/ehr_id/value                        | ASC     | 5840970c-feb7-47d8-afca-12bfc8486b81, cc779563-6505-4f87-9e6b-c9ba5dc887fb                                             |
-| c/ehr_id/value                        | DESC    | cc779563-6505-4f87-9e6b-c9ba5dc887fb, 5840970c-feb7-47d8-afca-12bfc8486b81                                             |
+| e/ehr_id/value                        | ASC     | 5840970c-feb7-47d8-afca-12bfc8486b81, cc779563-6505-4f87-9e6b-c9ba5dc887fb                                             |
+| e/ehr_id/value                        | DESC    | cc779563-6505-4f87-9e6b-c9ba5dc887fb, 5840970c-feb7-47d8-afca-12bfc8486b81                                             |
 | c/archetype_details/template_id/value | ASC     | aql-conformance-ehrbase.org.v0, type_repetition_conformance_ehrbase.org                                                |
 | c/archetype_details/template_id/value | DESC    | type_repetition_conformance_ehrbase.org, aql-conformance-ehrbase.org.v0                                                |
 | c/uid/value                           | ASC     | 9b9725a1-347a-40dd-8c68-e78938ec0f19::local.ehrbase.org::1, a9ac5dd6-6cd6-4adb-9eb5-586930ae13e9::local.ehrbase.org::1 |

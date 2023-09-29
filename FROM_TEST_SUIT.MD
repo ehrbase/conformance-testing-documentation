@@ -32,7 +32,7 @@
 | EVALUATION          | one result;JSON with _type = EVALUATION          |
 | INSTRUCTION_DETAILS | one result;JSON with _type = INSTRUCTION_DETAILS |
 | ACTIVITY            | one result;JSON with _type = ACTIVITY            |
-| ELEMENT             | 68 result;JSON with _type = ELEMENT              |
+
 
 ### TEST FROM Common types 
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist
@@ -63,7 +63,7 @@
 | ITEM_STRUCTURE | 400 status code; message: "It is unclear if ITEM_STRUCTURE targets a COMPOSITION or EHR_STATUS"   |
 | DATA_STRUCTURE | 400 status code; message starts with: "CONTAINS DATA_STRUCTURE is not supported"                  |
 
-### TEST FROM ITEM_STRUCTURE in composition
+### TEST FROM ITEM_STRUCTURE and ELEMENT  in composition
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
@@ -75,6 +75,7 @@
 | CLUSTER        | 3 result;JSON with _type = CLUSTER                     |
 | ITEM_STRUCTURE | 14 result;JSON with _type in ( 14 ITEM_TREE)           |
 | DATA_STRUCTURE | 15 result;JSON with _type in (1 HISTORY ,14 ITEM_TREE) |
+| ELEMENT        | 68 result;JSON with _type = ELEMENT                    |
 
 ## Test FROM Predicate [Predicate A - D](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#Predicates)   
 
@@ -106,19 +107,19 @@
 3. Create composition `aql-conformance-ehrbase.org.v0_contains.json`
 4. Run Query 'Select `SELECT o FROM {from}`
 
-| from                                                                                         | expected result                                                                                                                                                                |
-|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| COMPOSITION contains Observation o                                                           | 5 results;JSON with _type = OBSERVATION                                                                                                                                        |
-| SECTION contains Observation o                                                               | 5 results;JSON with _type = OBSERVATION                                                                                                                                        |
-| SECTION [openEHR-EHR-SECTION.adhoc.v1] contains Observation o                                | 2 results;JSON with _type = OBSERVATION and uuid in {1 55415141-17e4-4c71-9429-aa0fe6694c83, 1 94c0e756-e892-4985-884b-46829605a236}                                           |
-| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o                  | 3 results;JSON with _type = OBSERVATION and uuid in {1 2183807d-af68-41c5-9bfe-28cd150d62f7, 1 d4cccdfc-9c90-402f-b4bb-94e8dc4ea429, 1 893506a7-462b-40b8-9638-0aa3990642d9 }  |
-| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o contains Cluster | 3 results;JSON with _type = OBSERVATION and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9, 2 893506a7-462b-40b8-9638-0aa3990642d9, 3 2183807d-af68-41c5-9bfe-28cd150d62f7 }  |
-| Observation o contains Cluster                                                               | 3 results;JSON with _type = OBSERVATION and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9, 2 893506a7-462b-40b8-9638-0aa3990642d9, 3 2183807d-af68-41c5-9bfe-28cd150d62f7  } |
-| Observation o contains INTERVAL_EVENT                                                        | 2 results;JSON with _type = OBSERVATION  and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9 }                                                                                 |
-| Observation o contains INTERVAL_EVENT contains CLUSTER                                       | 1 result;JSON with _type = OBSERVATION   and uuid in {1 d4cccdfc-9c90-402f-b4bb-94e8dc4ea429,1 893506a7-462b-40b8-9638-0aa3990642d9 }                                          |
-| EVENT o contains CLUSTER                                                                     | 2 results;JSON with _type in {1 INTERVAL_EVENT,1 POINT_EVENT}                                                                                                                  |
-| OBSERVATION [openEHR-EHR-OBSERVATION.blood_pressure.v2]  contains ELEMENT e[at0004]          | 1 results;JSON with name/value = 'Systolic'                                                                                                                                    |
-| CLUSTER [openEHR-EHR-CLUSTER.conformance_cluster.v0]  contains ELEMENT e[at0003]             | 3 results;JSON with name/value = 'labresult'                                                                                                                                   |
+| from                                                                                                  | expected result                                                                                                                                                                |
+|-------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| COMPOSITION contains Observation o                                                                    | 5 results;JSON with _type = OBSERVATION                                                                                                                                        |
+| SECTION contains Observation o                                                                        | 5 results;JSON with _type = OBSERVATION                                                                                                                                        |
+| SECTION [openEHR-EHR-SECTION.adhoc.v1] contains Observation o                                         | 2 results;JSON with _type = OBSERVATION and uuid in {1 55415141-17e4-4c71-9429-aa0fe6694c83, 1 94c0e756-e892-4985-884b-46829605a236}                                           |
+| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o                           | 3 results;JSON with _type = OBSERVATION and uuid in {1 2183807d-af68-41c5-9bfe-28cd150d62f7, 1 d4cccdfc-9c90-402f-b4bb-94e8dc4ea429, 1 893506a7-462b-40b8-9638-0aa3990642d9 }  |
+| SECTION [openEHR-EHR-SECTION.conformance_section.v0] contains Observation o contains Cluster          | 3 results;JSON with _type = OBSERVATION and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9, 2 893506a7-462b-40b8-9638-0aa3990642d9, 3 2183807d-af68-41c5-9bfe-28cd150d62f7 }  |
+| Observation o contains Cluster                                                                        | 3 results;JSON with _type = OBSERVATION and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9, 2 893506a7-462b-40b8-9638-0aa3990642d9, 3 2183807d-af68-41c5-9bfe-28cd150d62f7  } |
+| Observation o contains INTERVAL_EVENT                                                                 | 2 results;JSON with _type = OBSERVATION  and uuid in {1 893506a7-462b-40b8-9638-0aa3990642d9 }                                                                                 |
+| Observation o contains INTERVAL_EVENT contains CLUSTER                                                | 1 result;JSON with _type = OBSERVATION   and uuid in {1 d4cccdfc-9c90-402f-b4bb-94e8dc4ea429,1 893506a7-462b-40b8-9638-0aa3990642d9 }                                          |
+| EVENT o contains CLUSTER                                                                              | 2 results;JSON with _type in {1 INTERVAL_EVENT,1 POINT_EVENT}                                                                                                                  |
+| OBSERVATION [openEHR-EHR-OBSERVATION.blood_pressure.v2]  contains ELEMENT e[at0004]                   | 1 results;JSON with name/value = 'Systolic'                                                                                                                                    |
+| COMPOSITION contains CLUSTER [openEHR-EHR-CLUSTER.conformance_cluster.v0]  contains ELEMENT e[at0003] | 3 results;JSON with name/value = 'labresult'                                                                                                                                   |
 
 ### contains with repeating types
 

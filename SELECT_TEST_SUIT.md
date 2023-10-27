@@ -43,7 +43,7 @@
 5. 4 Rows :
 
    | p/time/value        |
-   |---------------------|
+            |---------------------|
    | 2022-02-03T04:05:06 |
    | 2023-02-03T04:05:06 |
    | 2024-02-03T04:05:06 |
@@ -86,17 +86,19 @@
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
-4. Run Query 'Select `SELECT c/content[openEHR-EHR-SECTION.conformance_section.v0]/items[openEHR-EHR-ACTION.conformance_action_.v0] FROM COMPOSITION c`
+4. Run Query '
+   Select `SELECT c/content[openEHR-EHR-SECTION.conformance_section.v0]/items[openEHR-EHR-ACTION.conformance_action_.v0] FROM COMPOSITION c`
 5. Returns 1 Row json with type "ACTION"
 
 ### Path from Entry to Data value
+
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
 4. Run Query 'Select `SELECT {path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
-| path                                                                       | result                                                                                                                                 |
-|----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| path                                                                        | result                                                                                                                                 |
+|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value        | "Lorem ipsum", "Lorem ipsum2", "Lorem ipsum3"                                                                                          |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value/value        | "term1", "term1", "term1"                                                                                                              |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/units        | NULL, "mm", "mm"                                                                                                                       |
@@ -118,27 +120,47 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0027]/value/value        | 3 x " "https://www.example.com/sample""                                                                                                |
 
 ### Path from Entry to Data value in Cluster
+
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
-4. Run Query 'Select `SELECT o/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.conformance_cluster.v0]/{path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
-5. Run Query 'Select `SELECT c/{path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] contains Cluster c [openEHR-EHR-CLUSTER.conformance_cluster.v0]`
+4. Run Query '
+   Select `SELECT o/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.conformance_cluster.v0]/{path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
+5. Run Query '
+   Select `SELECT c/{path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] contains Cluster c [openEHR-EHR-CLUSTER.conformance_cluster.v0]`
 6. Check that both have the same result
 
 | path                                        | result                                        |
 |:--------------------------------------------|-----------------------------------------------|
-| items[at0003]/value/value                    | "Lorem ipsum", "Lorem ipsum2" , NULL          |
-| items[at0005]/value/value                    | "Lorem ipsum", "Lorem ipsum2", "Lorem ipsum3" |
+| items[at0003]/value/value                   | "Lorem ipsum", "Lorem ipsum2" , NULL          |
+| items[at0005]/value/value                   | "Lorem ipsum", "Lorem ipsum2", "Lorem ipsum3" |
 | feeder_audit/originating_system_item_ids/id | json with type FEEDER_AUDIT , NULL, NULL      |
 | feeder_audit/originating_system_item_ids/id | "id1","id2", NULL, NULL                       |
 
+### Array valued paths
+
+1. Upload `conformance-ehrbase.de.v0` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max.json`
+4. Run Query 'Select `SELECT {path} FROM COMPOSITION C CONTAINS OBSERVATION o  `
+
+   | path                                                                                                                                                                                                                                                                                                                    | result                                                                                         |
+   |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+   | c/context/participations/performer/name, c/context/participations/performer/external_ref/id/value                                                                                                                                                                                                                       | "Dr. Marcus Johnson,199", "Dr. Stefan Mann,200"                                                |
+   | c/context/participations/performer/name, c/context/participations/performer/identifiers/id                                                                                                                                                                                                                              | "Dr. Marcus Johnson,200","Dr. Marcus Johnson,201", "Dr. Stefan Mann,202","Dr. Stefan Mann,203" |
+   | c/feeder_audit/original_content/value, c/feeder_audit/feeder_system_item_ids/id, c/feeder_audit/feeder_system_item_ids/type, c/feeder_audit/feeder_system_item_ids/issuer                                                                                                                                               | "Hello world!,id1,PERSON,issuer1" ,"Hello world!,id2,PERSON,issuer2"                           |
+   | o/subject/identifiers/id                                                                                                                                                                                                                                                                                                | "200", "123"                                                                                   |
+   | o/other_participations/performer/name,  o/other_participations/performer/external_ref/id                                                                                                                                                                                                                                | "Dr. Marcus Johnson,199", "Dr. Stefan Mann,200"                                                |
+   | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/mappings/match, o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/mappings/target/code_string                                                                                                                                               | "=,21794005", ">,21794007"                                                                     |
+   | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/other_reference_ranges/range/lower/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/other_reference_ranges/range/upper/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/other_reference_ranges/range/upper/meaning/value | "8,10,high", "11,12,very high"                                                                 |
 
 ## Primitives
+
 ### Primitives in simple select
 
 1. Create EHR
 2. Run Query 'SELECT {primitive} from ehr'
-3. Check result is equal to  {primitive}
+3. Check result is equal to {primitive}
 
 | {primitive}                        |
 |------------------------------------|
@@ -150,9 +172,6 @@
 | TRUE                               |
 | "2021-12-21T14:19:31.649613+01:00" |
 | NULL                               |
-
-
-
 
 ### multi selects
 
@@ -179,6 +198,7 @@
 ## Drill down along paths
 
 ### Drill down EVENT-CONTEXT
+
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
@@ -200,6 +220,7 @@
 | c/setting/defining_code/terminology_id/value | one row with    "openehr"                                                                                                                                                                                        |
 
 ### Drill down OBSERVATION
+
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`

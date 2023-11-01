@@ -94,6 +94,69 @@
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/lower/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/meaning/value | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/magnitude = 12        | "11,12,very high"                                 |
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/lower/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/meaning/value | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/meaning/value ='high' | "8,10,high"                                       |
 
+### Compere by DV_DATE
+
+1. Upload `conformance-ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_known_date_type_1.json`
+4. Create composition  `conformance_ehrbase.de.v0_known_date_type_2.json`
+5. Create composition  `conformance_ehrbase.de.v0_known_date_type_3.json`
+6. Create composition  `conformance_ehrbase.de.v0_known_date_type_5.json`
+5. Run Query 'Select `SELECT {path}/value from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec WHERE {path} {condition}`
+
+| {path}        | {condition}                           | result                                                                                                                               |
+|---------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| ec/start_time | = '2021-12-21T15:19:31.649613+01:00'  | 2021-12-21T15:19:31.649613+01:00                                                                                                     |
+| ec/start_time | = '2021-12-21T14:19:31.649613+02:00'  | 2021-12-21T15:19:31.649613+01:00                                                                                                     |
+| ec/start_time | >= '2021-12-21T15:19:31.649613+01:00' | 2021-12-21T15:19:31.649613+01:00,2021-12-21T14:19:31.649613+03:00, 2022-12-21T14:19:31.649613+01:00                                  |
+| ec/start_time | > '2021-12-21T15:19:31.649613+01:00'  | 2021-12-21T14:19:31.649613+03:00, 2022-12-21T14:19:31.649613+01:00                                                                   |
+| ec/start_time | <= '2021-12-21T15:19:31.649613+01:00' | 2021-12-21T14:19:31.649613+01:00,2021-12-21T15:19:31.649613+01:00                                                                    |
+| ec/start_time | < '2021-12-21T15:19:31.649613+01:00'  | 2021-12-21T14:19:31.649613+01:00                                                                                                     |
+
+
+
+
+### Compere by DvOrdered
+
+1. Upload `conformance-ehrbase.de.v0` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max_v2.json`
+4. Run Query '
+   Select `SELECT {path}{spath} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] WHERE {path} {condition}`
+
+| path                                                                     | spath      | condition               | result              |
+|--------------------------------------------------------------------------|------------|-------------------------|---------------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | = 80.2                  | 80.2                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | > 80.2                  | empty result        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | < 80.2                  | 22.2                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | = 80.2                  | 80.2                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | > 80.2                  | empty result        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | < 80.2                  | 22.2                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | =  14                   | 42                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | >  14                   | 40                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value/numerator |            | = 40                    | 40                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value/numerator |            | > 40                    | 42                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude |            | = 50                    | 50                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude |            | > 50                    | 400                 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value           | /magnitude | = 50                    | 50                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value           | /magnitude | > 50                    | 400                 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value/value     |            | = '2022-03-03T04:05:06' | 2022-03-03T04:05:06 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value/value     |            | > '2022-03-03T04:05:06' | 2023-02-03T04:05:06 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value           | /value     | = '2022-03-03T04:05:06' | 2022-03-03T04:05:06 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value           | /value     | > '2022-03-03T04:05:06' | 2023-02-03T04:05:06 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value/value     |            | = '04:06:06'            | 04:06:06            |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value/value     |            | > '04:06:06'            | 05:05:06            |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value           | /value     | = '04:06:06'            | 04:06:06            |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value           | /value     | > '04:06:06'            | 05:05:06            |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value/value     |            | = '2022-03-03'          | 2022-03-03          |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value/value     |            | > '2022-03-03'          | 2023-02-03          |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value           | /value     | = '2022-03-03'          | 2022-03-03          |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value           | /value     | > '2022-03-03'          | 2023-02-03          |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value/value     |            | = 1                     | 1,1                 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value/value     |            | > 1                     | 2                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | = 1                     | 1,1                 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | > 1                     | 2                   |
+
 
 ## Matches [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#WHERE)
 ### Matches extracted column

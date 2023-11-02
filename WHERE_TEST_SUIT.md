@@ -156,7 +156,7 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | = 1                     | 1,1                 |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | > 1                     | 2                   |
 
-## Exist
+## Exists
 ### Compare with Null
 
 1. Upload `conformance-ehrbase.de.v0` if not exist

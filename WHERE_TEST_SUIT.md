@@ -164,12 +164,12 @@
 3. Create composition  `conformance_ehrbase.de.v0_max_v2.json`
 4. Run Query 'Select `SELECT {path}{spath} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] WHERE {condition} {path} `
 
-| path                                                                     | spath      | condition | result     |
-|--------------------------------------------------------------------------|------------|-----------|------------|
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | EXIST     | 22.0, 80.2 |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | EXIST     | 22.0, 80.2 |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | NOT EXIST | NULL       |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | NOT EXIST | NULL       |
+| path                                                                     | spath      | condition  | result     |
+|--------------------------------------------------------------------------|------------|------------|------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | EXISTS     | 22.0, 80.2 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | EXISTS     | 22.0, 80.2 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | NOT EXISTS | NULL       |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | NOT EXISTS | NULL       |
 
 ## Matches [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#WHERE)
 ### Matches extracted column

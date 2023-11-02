@@ -129,7 +129,7 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | = 80.2                  | 80.2                |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | > 80.2                  | empty result        |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | < 80.2                  | 22.2                |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | = 80.2                  | 80.2                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | = 80.2                  | 80.2                |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | > 80.2                  | empty result        |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | < 80.2                  | 22.2                |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | =  14                   | 42                  |

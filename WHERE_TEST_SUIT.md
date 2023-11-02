@@ -94,15 +94,15 @@
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/lower/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/meaning/value | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/magnitude = 12        | "11,12,very high"                                 |
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/lower/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/magnitude, o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/meaning/value | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/other_reference_ranges/range/upper/meaning/value ='high' | "8,10,high"                                       |
 
-### Compere by DV_DATE
+### Compare by DV_DATE
 
 1. Upload `conformance-ehrbase.de.v0.opt` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_known_date_type_1.json`
 4. Create composition  `conformance_ehrbase.de.v0_known_date_type_2.json`
 5. Create composition  `conformance_ehrbase.de.v0_known_date_type_3.json`
-6. Create composition  `conformance_ehrbase.de.v0_known_date_type_5.json`
-5. Run Query 'Select `SELECT {path}/value from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec WHERE {path} {condition}`
+6. Create composition  `conformance_ehrbase.de.v0_known_date_type_4.json`
+7. Run Query 'Select `SELECT {path}/value from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec WHERE {path} {condition}`
 
 | {path}        | {condition}                           | result                                                                                                                               |
 |---------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
@@ -116,13 +116,12 @@
 
 
 
-### Compere by DvOrdered
+### Compare by DvOrdered
 
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max_v2.json`
-4. Run Query '
-   Select `SELECT {path}{spath} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] WHERE {path} {condition}`
+4. Run Query 'Select `SELECT {path}{spath} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] WHERE {path} {condition}`
 
 | path                                                                     | spath      | condition               | result              |
 |--------------------------------------------------------------------------|------------|-------------------------|---------------------|
@@ -157,6 +156,20 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | = 1                     | 1,1                 |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | > 1                     | 2                   |
 
+## Exist
+### Compare with Null
+
+1. Upload `conformance-ehrbase.de.v0` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max_v2.json`
+4. Run Query 'Select `SELECT {path}{spath} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] WHERE {condition} {path} `
+
+| path                                                                     | spath      | condition | result     |
+|--------------------------------------------------------------------------|------------|-----------|------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | EXIST     | 22.0, 80.2 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | EXIST     | 22.0, 80.2 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | NOT EXIST | NULL       |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | NOT EXIST | NULL       |
 
 ## Matches [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#WHERE)
 ### Matches extracted column
@@ -180,6 +193,7 @@
 |-------------------------------------------------|-----------------------------------------------------|
 | e/ehr_id/value matches {{ehr_id_1}, {ehr_id_2}} | ["{ehr_id_1},{comp_id_1}","{ehr_id_2},{comp_id_2}"] |
 | e/ehr_id/value matches {{ehr_id_1}, {ehr_id_3}} | ["{ehr_id_1},{comp_id_1}","{ehr_id_3},{comp_id_3}"] |
+
 ## like [Feature List](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#WHERE)
 ### like with extracted column 
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist

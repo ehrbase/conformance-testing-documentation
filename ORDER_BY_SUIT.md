@@ -134,7 +134,7 @@
 3. Create composition  `conformance_ehrbase.de.v0_known_date_type_1.json`
 4. Create composition  `conformance_ehrbase.de.v0_known_date_type_2.json`
 5. Create composition  `conformance_ehrbase.de.v0_known_date_type_3.json`
-6. Create composition  `conformance_ehrbase.de.v0_known_date_type_5.json`
+6. Create composition  `conformance_ehrbase.de.v0_known_date_type_4.json`
 5. Run Query 'Select `SELECT {path}/value from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec ORDER BY {path} {order}`
 
 | {path}                                        | {order} | result in order                                                                                                                       |

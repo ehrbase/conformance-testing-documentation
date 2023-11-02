@@ -134,8 +134,8 @@
 3. Create composition  `conformance_ehrbase.de.v0_known_date_type_1.json`
 4. Create composition  `conformance_ehrbase.de.v0_known_date_type_2.json`
 5. Create composition  `conformance_ehrbase.de.v0_known_date_type_3.json`
-6. Create composition  `conformance_ehrbase.de.v0_known_date_type_5.json`
-5. Run Query 'Select `SELECT {path} from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec ORDER BY {path} {order}`
+6. Create composition  `conformance_ehrbase.de.v0_known_date_type_4.json`
+5. Run Query 'Select `SELECT {path}/value from EHR e CONTAINS COMPOSITION c contains EVENT_CONTEXT ec ORDER BY {path} {order}`
 
 | {path}                                        | {order} | result in order                                                                                                                       |
 |-----------------------------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -147,40 +147,40 @@
 
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
-3. Create composition  `conformance_ehrbase.de.v0_max.json`
+3. Create composition  `conformance_ehrbase.de.v0_max_v2.json`
 4. Run Query '
    Select `SELECT {path}{spath} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] ORDER BY {path} {order}`
 
-| path                                                                    | spath      | order | result                                                       |
-|-------------------------------------------------------------------------|------------|-------|--------------------------------------------------------------|
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0008]/value           | /magnitude | ASC   | In order 22.0, 80.2, NULL                                    |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0008]/value           | /magnitude | DESC  | In order  NULL,80.2, 22.0                                    |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0008]/value/magnitude |            | ASC   | In order 22.0, 80.2, NULL                                    |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0008]/value/magnitude |            | DESC  | In order  NULL,80.2, 22.0                                    |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0009]/value           | /numerator | ASC   | In order 20.0,42,40                                          |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0009]/value           | /numerator | DESC  | In order  40, 42 ,20.0                                       |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0009]/value/numerator |            | ASC   | In order 20.0,40,  42                                        |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0009]/value/numerator |            | DESC  | In order 42 ,40 ,20.0                                        |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0010]/value/magnitude |            | ASC   | 42,42 ,400                                                   |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0010]/value/magnitude |            | DESC  | 400  ,42,42                                                  |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0010]/value           | /magnitude | ASC   | 42,42 ,400                                                   |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0010]/value           | /magnitude | DESC  | 400  ,42,42                                                  |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0011]/value/value     |            | ASC   | 2022-02-03T04:05:06,2022-02-03T04:05:06 ,2023-02-03T04:05:06 |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0011]/value/value     |            | DESC  | 2023-02-03T04:05:06,2022-02-03T04:05:06 ,2022-02-03T04:05:06 |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0011]/value           | /value     | ASC   | 2022-02-03T04:05:06,2022-02-03T04:05:06 ,2023-02-03T04:05:06 |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0011]/value           | /value     | DESC  | 2023-02-03T04:05:06,2022-02-03T04:05:06 ,2022-02-03T04:05:06 |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0012]/value/value     |            | ASC   | 04:05:06,04:05:06,05:05:06                                   |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0012]/value/value     |            | DESC  | 05:05:06,04:05:06,04:05:06                                   |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0012]/value           | /value     | ASC   | 04:05:06,04:05:06,05:05:06                                   |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0012]/value           | /value     | DESC  | 05:05:06,04:05:06,04:05:06                                   |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0013]/value/value     |            | ASC   | 2022-02-03,2022-02-03,2023-02-03                             |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0013]/value/value     |            | DESC  | 2023-02-03,2022-02-03,2022-02-03                             |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0013]/value           | /value     | ASC   | 2022-02-03,2022-02-03,2023-02-03                             |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0013]/value           | /value     | DESC  | 2023-02-03,2022-02-03,2022-02-03                             |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0014]/value/value     |            | ASC   | 1,1,2                                                        |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0014]/value/value     |            | DESC  | 2,1,1                                                        |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0014]/value           | /value     | ASC   | 1,1,2                                                        |
-| o/data[at0001]/events[at0002]/data[at0003]/item[at0014]/value           | /value     | DESC  | 2,1,1                                                        |
+| path                                                                     | spath      | order | result in Order                                              |
+|--------------------------------------------------------------------------|------------|-------|--------------------------------------------------------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | ASC   | In order 22.0, 80.2, NULL                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | DESC  | In order  NULL,80.2, 22.0                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | ASC   | In order 22.0, 80.2, NULL                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | DESC  | In order  NULL,80.2, 22.0                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | ASC   | In order 20.0,42,40                                          |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | DESC  | In order  40, 42 ,20.0                                       |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value/numerator |            | ASC   | In order 20.0,40,  42                                        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value/numerator |            | DESC  | In order 42 ,40 ,20.0                                        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude |            | ASC   | 42,50 ,400                                                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude |            | DESC  | 400  ,50,42                                                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value           | /magnitude | ASC   | 42,50 ,400                                                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value           | /magnitude | DESC  | 400  ,50,42                                                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value/value     |            | ASC   | 2022-02-03T04:05:06,2022-03-03T04:05:06 ,2023-02-03T04:05:06 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value/value     |            | DESC  | 2023-02-03T04:05:06,2022-03-03T04:05:06 ,2022-02-03T04:05:06 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value           | /value     | ASC   | 2022-02-03T04:05:06,2022-03-03T04:05:06 ,2023-02-03T04:05:06 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value           | /value     | DESC  | 2023-02-03T04:05:06,2022-03-03T04:05:06 ,2022-02-03T04:05:06 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value/value     |            | ASC   | 04:05:06,04:06:06,05:05:06                                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value/value     |            | DESC  | 05:05:06,04:06:06,04:05:06                                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value           | /value     | ASC   | 04:05:06,04:06:06,05:05:06                                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value           | /value     | DESC  | 05:05:06,04:06:06,04:05:06                                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value/value     |            | ASC   | 2022-02-03,2022-03-03,2023-02-03                             |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value/value     |            | DESC  | 2023-02-03,2022-03-03,2022-02-03                             |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value           | /value     | ASC   | 2022-02-03,2022-03-03,2023-02-03                             |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value           | /value     | DESC  | 2023-02-03,2022-03-03,2022-02-03                             |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value/value     |            | ASC   | 1,1,2                                                        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value/value     |            | DESC  | 2,1,1                                                        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | ASC   | 1,1,2                                                        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | DESC  | 2,1,1                                                        |
 
 
 ## Multiple Order BY

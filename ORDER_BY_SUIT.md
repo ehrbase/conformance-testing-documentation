@@ -153,10 +153,10 @@
 
 | path                                                                     | spath      | order | result in Order                                              |
 |--------------------------------------------------------------------------|------------|-------|--------------------------------------------------------------|
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | ASC   | In order 22.0, 80.2, NULL                                    |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | DESC  | In order  NULL,80.2, 22.0                                    |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | ASC   | In order 22.0, 80.2, NULL                                    |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | DESC  | In order  NULL,80.2, 22.0                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | ASC   | In order 22.0, 82.0 , NULL                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | DESC  | In order  NULL,82.0 , 22.0                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | ASC   | In order 22.0, 82.0 , NULL                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | DESC  | In order  NULL,82.0 , 22.0                                    |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | ASC   | In order 20.0,42,40                                          |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | DESC  | In order  40, 42 ,20.0                                       |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value/numerator |            | ASC   | In order 20.0,40,  42                                        |

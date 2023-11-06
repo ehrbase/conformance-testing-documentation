@@ -183,6 +183,20 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | DESC  | 2,1,1                                                        |
 
 
+### ORDER BY unknown type
+
+1. Upload `choice_ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `choice_ehrbase.de.v0.json`
+4. Run Query '
+   Select `SELECT o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value,o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude   FROM OBSERVATION o [openEHR-EHR-OBSERVATION.choice.v0] ORDER BY {path} ASC`
+
+| path                                                                     | result in Order                                                                                                                                                                                                                                                           |
+|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | {'04:05:06',NULL},{'04:06:06',NULL}, {'10',NULL},{'2',NULL},{'2022-03-03T04:05:06',NULL}, {'2022-03-03T04:06:06',NULL},{'2022-03-04',NULL},{'2022-03-04T04:05:06',NULL},{'2022-04-03T04:05:06',NULL},{NULL,2},{NULL,2.0},{NULL,10.0}, {NULL,10},{true,NULL},{false,NULL}  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | {'04:05:06',NULL},{'04:06:06',NULL}, {'10',NULL},{'2',NULL},{'2022-03-03T04:05:06',NULL}, {'2022-03-03T04:06:06',NULL},{'2022-03-04',NULL},{'2022-03-04T04:05:06',NULL},{'2022-04-03T04:05:06',NULL}{true,NULL},{false,NULL},{NULL,2},{NULL,2.0},{NULL,10.0}, {NULL,10}   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | {NULL,2},{NULL,2.0},{NULL,10.0}, {NULL,10},{true,NULL},{false,NULL}  {'04:05:06',NULL},{'04:06:06',NULL}, {'10',NULL},{'2',NULL},{'2022-03-03T04:05:06',NULL}, {'2022-03-03T04:06:06',NULL},{'2022-03-04',NULL},{'2022-03-04T04:05:06',NULL},{'2022-04-03T04:05:06',NULL} |
+
 ## Multiple Order BY
 
 ### Order BY on extracted columns IV
@@ -201,3 +215,4 @@
 | DESC     | DESC     | {type_repetition_conformance_ehrbase.org,Conformance Observation }, 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } ,{aql-conformance-ehrbase.org.v0, Blood pressure }  |
 | ASC      | DESC     | 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } ,{aql-conformance-ehrbase.org.v0, Blood pressure }, {type_repetition_conformance_ehrbase.org,Conformance Observation }  |
 | DESC     | ASC      | {type_repetition_conformance_ehrbase.org,Conformance Observation },  {aql-conformance-ehrbase.org.v0, Blood pressure }, 4 x { aql-conformance-ehrbase.org.v0 , Conformance Observation } |
+

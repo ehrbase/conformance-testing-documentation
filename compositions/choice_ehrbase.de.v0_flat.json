@@ -117,7 +117,7 @@
   "choice_ehrbase.de.v0/choice:14/encoding|code": "UTF-8",
   "choice_ehrbase.de.v0/choice:14/encoding|terminology": "IANA_character-sets",
   "choice_ehrbase.de.v0/choice:14/_uid": "d6c1b9a4-7081-491e-b22e-c60803c90114",
-  "choice_ehrbase.de.v0/choice:15/element/count_value": 2,
+  "choice_ehrbase.de.v0/choice:15/element/count_value": 3,
   "choice_ehrbase.de.v0/choice:15/time": "2022-03-03T04:05:07",
   "choice_ehrbase.de.v0/choice:15/language|terminology": "ISO_639-1",
   "choice_ehrbase.de.v0/choice:15/language|code": "en",

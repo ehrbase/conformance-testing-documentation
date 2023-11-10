@@ -71,8 +71,8 @@
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | 'Lorem ipsum 2'       | "Lorem ipsum 2"     |
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 20                    | 20                  |
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 25                    | 25                  |
-   | o/data[at0001]/events[at0002]/data[at0003]/items[at00011]/value/value    | '2022-02-03T04:05:06' | 2022-02-03T04:05:06 |
-   | o/data[at0001]/events[at0002]/data[at0003]/items[at00011]/value/value    | '2024-02-03T04:05:06' | 2024-02-03T04:05:06 |
+   | o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value/value     | '2022-02-03T04:05:06' | 2022-02-03T04:05:06 |
+   | o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value/value     | '2024-02-03T04:05:06' | 2024-02-03T04:05:06 |
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0017]/value/value     | true                  | true                |
    | o/data[at0001]/events[at0002]/data[at0003]/items[at0017]/value/value     | false                 | false               |
    
@@ -125,12 +125,12 @@
 
 | path                                                                     | spath      | condition               | result              |
 |--------------------------------------------------------------------------|------------|-------------------------|---------------------|
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | = 80.2                  | 80.2                |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | > 80.2                  | empty result        |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | < 80.2                  | 22.2                |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | = 80.2                  | 80.2                |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | > 80.2                  | empty result        |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | < 80.2                  | 22.2                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | = 82.0                  | 82.0                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | > 82.0                  | empty result        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value           | /magnitude | < 82.0                  | 22.0                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | = 82.0                  | 82.0                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | > 82.0                  | empty result        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude |            | < 82.0                  | 22.0                |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | =  14                   | 42                  |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value           | /numerator | >  14                   | 40                  |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value/numerator |            | = 40                    | 40                  |
@@ -155,6 +155,44 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value/value     |            | > 1                     | 2                   |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | = 1                     | 1,1                 |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value           | /value     | > 1                     | 2                   |
+
+
+### Compare BY unknown type
+
+1. Upload `choice_ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `choice_ehrbase.de.v0.json`
+4. Run Query '
+   Select `SELECT o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value,o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude   FROM OBSERVATION o [openEHR-EHR-OBSERVATION.choice.v0] WHERE {path} {condition}`
+
+| path                                                                     | condition     | result                                                                                                                                                                                                                                                        |
+|--------------------------------------------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | =  '04:05:06' | {'04:05:06',NULL}                                                                                                                                                                                                                                             |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | <  '04:06:06' | {'04:05:06',NULL}                                                                                                                                                                                                                                             |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | =  '10.0'     | {'10.0',NULL}                                                                                                                                                                                                                                                 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | <  '2'        | {'04:05:06',NULL},{'04:06:06',NULL}, {'10.0',NULL}                                                                                                                                                                                                            |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | =  2          | {2,NULL}, {2.0,NULL}                                                                                                                                                                                                                                          |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | <  10         | {'04:05:06',NULL},{'04:06:06',NULL}, {'10.0',NULL},{'2',NULL},{'2022-03-03T04:05:06',NULL}, {'2022-03-03T04:06:06',NULL},{'2022-03-04',NULL},{'2022-03-04T04:05:06',NULL},{'2022-04-03T04:05:06',NULL},{NULL,2},{NULL,2.0}                                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | =  false      | {false,NULL}                                                                                                                                                                                                                                                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value           | <  false      | {'04:05:06',NULL},{'04:06:06',NULL}, {'10.0',NULL},{'2',NULL},{'2022-03-03T04:05:06',NULL}, {'2022-03-03T04:06:06',NULL},{'2022-03-04',NULL},{'2022-03-04T04:05:06',NULL},{'2022-04-03T04:05:06',NULL},{NULL,2},{NULL,2.0},{NULL,10.0}, {NULL,10},{true,NULL} |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | =  '04:05:06' | {'04:05:06',NULL}                                                                                                                                                                                                                                             |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | <  '04:06:06' | {'04:05:06',NULL}                                                                                                                                                                                                                                             |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | =  '10.0'     | {'10.0',NULL}                                                                                                                                                                                                                                                 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | <  '2'        | {'04:05:06',NULL},{'04:06:06',NULL}, {'10.0',NULL}                                                                                                                                                                                                            |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | =  2          | empty set                                                                                                                                                                                                                                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | <  10         | {'04:05:06',NULL},{'04:06:06',NULL}, {'10.0',NULL},{'2',NULL},{'2022-03-03T04:05:06',NULL}, {'2022-03-03T04:06:06',NULL},{'2022-03-04',NULL},{'2022-03-04T04:05:06',NULL},{'2022-04-03T04:05:06',NULL}                                                        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | =  false      | {false,NULL}                                                                                                                                                                                                                                                  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value     | <  false      | {'a',null},{'b',null},{'04:05:06',NULL},{'04:06:06',NULL}, {'10.0',NULL},{'2',NULL},{'2022-03-03T04:05:06',NULL}, {'2022-03-03T04:06:06',NULL},{'2022-03-04',NULL},{'2022-03-04T04:05:06',NULL},{'2022-04-03T04:05:06',NULL},{true,NULL}                      |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | =  '04:05:06' | empty set                                                                                                                                                                                                                                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | <  '04:06:06' | empty set                                                                                                                                                                                                                                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | =  '10.0'     | empty set                                                                                                                                                                                                                                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | <  '2'        | empty set                                                                                                                                                                                                                                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | =  2          | {2,NULL}, {2.0,NULL}                                                                                                                                                                                                                                          |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | <  10         | {NULL,2},{NULL,2.0}, {NULL,3}                                                                                                                                                                                                                                 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | =  false      | empty set                                                                                                                                                                                                                                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude | <  false      | {NULL,2},{NULL,2.0},{NULL,10.0}, {NULL,10}, {NULL,3}                                                                                                                                                                                                          |
+
+
 
 ## Exists
 ### Compare with Null

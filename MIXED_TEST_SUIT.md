@@ -1,5 +1,6 @@
 # Mixed
 ## Predicated and where
+
 1. Upload `Corona_Anamnese.opt` if not exist
 2. Upload `Corona_Anamnese2.opt` if not exist
 3. Create ehr and save {ehr_id1}
@@ -158,4 +159,241 @@
     [
     "Husten",
     "Vorhanden"
+    ]```
+## Contains and where
+
+1. Upload `type_repetition_conformance_ehrbase.org.opt` if not exist
+2. Create ehr 
+3. Create composition `type_repetition_conformance_ehrbase.org_where1.json` 
+4. Run Query `SELECT  s1/feeder_audit/originating_system_item_ids/id, s2/feeder_audit/originating_system_item_ids/id, o/feeder_audit/originating_system_item_ids/id, v/time/value , c1/items[at0001]/value/value , l/value/value  FROM EHR e contains COMPOSITION c contains SECTION s1 contains SECTION s2 contains OBSERVATION o contains EVENT v contains  CLUSTER c1 contains CLUSTER c2 contains ELEMENT l`
+5. Check Result : ```
+   [
+   [
+   "ad_hoc_heading 1",
+   "conformance_section 1",
+   "observation 1",
+   "2021-02-03T04:05:06",
+   "cluster inter text1",
+   "cluster outer text1"
+   ],
+   [
+   "ad_hoc_heading 1",
+   "conformance_section 1",
+   "observation 1",
+   "2021-02-03T04:05:06",
+   "cluster inter text1",
+   "cluster outer text2"
+   ],
+   [
+   "ad_hoc_heading 1",
+   "conformance_section 1",
+   "observation 1",
+   "2022-02-03T04:05:06",
+   "cluster inter text2",
+   "cluster outer text3"
+   ],
+   [
+   "ad_hoc_heading 1",
+   "conformance_section 1",
+   "observation 1",
+   "2022-02-03T04:05:06",
+   "cluster inter text2",
+   "cluster outer text4"
+   ],
+   [
+   "ad_hoc_heading 1",
+   "conformance_section 2",
+   "observation 2",
+   "2023-02-03T04:05:06",
+   "cluster inter text3",
+   "cluster outer text5"
+   ],
+   [
+   "ad_hoc_heading 1",
+   "conformance_section 2",
+   "observation 2",
+   "2023-02-03T04:05:06",
+   "cluster inter text3",
+   "cluster outer text6"
+   ],
+   [
+   "ad_hoc_heading 1",
+   "conformance_section 2",
+   "observation 2",
+   "2024-02-03T04:05:06",
+   "cluster inter text4",
+   "cluster outer text7"
+   ],
+   [
+   "ad_hoc_heading 1",
+   "conformance_section 2",
+   "observation 2",
+   "2024-02-03T04:05:06",
+   "cluster inter text4",
+   "cluster outer text8"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 3",
+   "observation 3",
+   "2021-02-03T04:05:06",
+   "cluster inter text5",
+   "cluster outer text9"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 3",
+   "observation 3",
+   "2021-02-03T04:05:06",
+   "cluster inter text5",
+   "cluster outer text10"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 3",
+   "observation 3",
+   "2022-02-03T04:05:06",
+   "cluster inter text6",
+   "cluster outer text11"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 3",
+   "observation 3",
+   "2022-02-03T04:05:06",
+   "cluster inter text6",
+   "cluster outer text12"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2023-02-03T04:05:06",
+   "cluster inter text7",
+   "cluster outer text13"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2023-02-03T04:05:06",
+   "cluster inter text7",
+   "cluster outer text14"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2024-02-03T04:05:06",
+   "cluster inter text8",
+   "cluster outer text15"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2024-02-03T04:05:06",
+   "cluster inter text8",
+   "cluster outer text16"
+   ]
+   ]```
+6. Run Query `SELECT  s1/feeder_audit/originating_system_item_ids/id, s2/feeder_audit/originating_system_item_ids/id, o/feeder_audit/originating_system_item_ids/id, v/time/value , c1/items[at0001]/value/value , l/value/value  FROM EHR e contains COMPOSITION c contains SECTION s1 contains SECTION s2 contains OBSERVATION o contains EVENT v contains  CLUSTER c1 contains CLUSTER c2 contains ELEMENT l where s1/feeder_audit/originating_system_item_ids/id = 'ad_hoc_heading 2'`
+7. Check Result : ```
+   [
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 3",
+   "observation 3",
+   "2021-02-03T04:05:06",
+   "cluster inter text5",
+   "cluster outer text9"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 3",
+   "observation 3",
+   "2021-02-03T04:05:06",
+   "cluster inter text5",
+   "cluster outer text10"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 3",
+   "observation 3",
+   "2022-02-03T04:05:06",
+   "cluster inter text6",
+   "cluster outer text11"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 3",
+   "observation 3",
+   "2022-02-03T04:05:06",
+   "cluster inter text6",
+   "cluster outer text12"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2023-02-03T04:05:06",
+   "cluster inter text7",
+   "cluster outer text13"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2023-02-03T04:05:06",
+   "cluster inter text7",
+   "cluster outer text14"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2024-02-03T04:05:06",
+   "cluster inter text8",
+   "cluster outer text15"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2024-02-03T04:05:06",
+   "cluster inter text8",
+   "cluster outer text16"
+   ]
+   ]```
+8. Run Query `SELECT  s1/feeder_audit/originating_system_item_ids/id, s2/feeder_audit/originating_system_item_ids/id, o/feeder_audit/originating_system_item_ids/id, v/time/value , c1/items[at0001]/value/value , l/value/value  FROM EHR e contains COMPOSITION c contains SECTION s1 contains SECTION s2 contains OBSERVATION o contains EVENT v contains  CLUSTER c1 contains CLUSTER c2 contains ELEMENT l where s1/feeder_audit/originating_system_item_ids/id = 'ad_hoc_heading 2' and s2/feeder_audit/originating_system_item_ids/id = 'conformance_section 4' and v/time/value = '2024-02-03T04:05:06'`
+9. Check Result : ```
+   [
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2024-02-03T04:05:06",
+   "cluster inter text8",
+   "cluster outer text15"
+   ],
+   [
+   "ad_hoc_heading 2",
+   "conformance_section 4",
+   "observation 4",
+   "2024-02-03T04:05:06",
+   "cluster inter text8",
+   "cluster outer text16"
+   ]
+   ]```
+10. Run Query `SELECT  s1/feeder_audit/originating_system_item_ids/id, s2/feeder_audit/originating_system_item_ids/id, o/feeder_audit/originating_system_item_ids/id, v/time/value , c1/items[at0001]/value/value , l/value/value  FROM EHR e contains COMPOSITION c contains SECTION s1 contains SECTION s2 contains OBSERVATION o contains EVENT v contains  CLUSTER c1 contains CLUSTER c2 contains ELEMENT l where s1/feeder_audit/originating_system_item_ids/id = 'ad_hoc_heading 2' and s2/feeder_audit/originating_system_item_ids/id = 'conformance_section 4' and v/time/value = '2024-02-03T04:05:06' and l/value/value = 'cluster outer text16'`
+11. Check Result : ```
+    [
+    [
+    "ad_hoc_heading 2",
+    "conformance_section 4",
+    "observation 4",
+    "2024-02-03T04:05:06",
+    "cluster inter text8",
+    "cluster outer text16"
+    ]
     ]```

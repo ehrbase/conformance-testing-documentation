@@ -397,3 +397,68 @@
     "cluster outer text16"
     ]
     ]```
+## DISTINCT 
+
+1. Upload `Corona_Anamnese.opt` if not exist
+2. Upload `Corona_Anamnese2.opt` if not exist
+3. Create ehr and save {ehr_id1}
+4. Create composition `Corona_Anamnese.json` and save {comp_id1}
+5. Create ehr and save {ehr_id2}
+6. Create composition `Corona_Anamnese2.json` and save {comp_id2}
+7. Create composition `Corona_Anamnese3.json` and save {comp_id3}
+8. Run Query `SELECT  DISTINCT o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0004]/value/value , o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0005]/value/value  FROM EHR e contains COMPOSITION c contains OBSERVATION o[openEHR-EHR-OBSERVATION.symptom_sign_screening.v0]  order by o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0004]/value/value , o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0005]/value/value`
+9. Check Result in Order : ```
+   [
+   [
+   "Durchfall",
+   "Nicht vorhanden"
+   ],
+   [
+   "Fieber oder erhöhte Körpertemperatur",
+   "Vorhanden"
+   ],
+   [
+   "Heiserkeit",
+   "Nicht vorhanden"
+   ],
+   [
+   "Husten",
+   "Nicht vorhanden"
+   ],
+   [
+   "Husten",
+   "Vorhanden"
+   ],
+   [
+   "Schnupfen",
+   "Vorhanden"
+   ],
+   [
+   "gestörter Geruchssinn",
+   "Nicht vorhanden"
+   ],
+   [
+   "gestörter Geschmackssinn",
+   "Nicht vorhanden"
+   ]
+   ]```
+10. Run Query `SELECT  DISTINCT o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0004]/value/value   FROM EHR e contains COMPOSITION c contains OBSERVATION o[openEHR-EHR-OBSERVATION.symptom_sign_screening.v0]  where o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0005]/value/value = 'Vorhanden' order by o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0004]/value/value`
+11. Check Result in Order : ```
+    [
+    [
+    "Fieber oder erhöhte Körpertemperatur"
+    ],
+    [
+    "Husten"
+    ],
+    [
+    "Schnupfen"
+    ]
+    ]```
+12. Run Query `SELECT  DISTINCT o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0004]/value/value   FROM EHR e contains COMPOSITION c contains OBSERVATION o[openEHR-EHR-OBSERVATION.symptom_sign_screening.v0]  where o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0005]/value/value = 'Vorhanden' order by o/data[at0001]/events[at0002]/data[at0003]/items[at0022]/items[at0004]/value/value limit 1 offset 1`
+13. Check Result in Order : ```
+    [
+    [
+    "Husten"
+    ]
+    ]```

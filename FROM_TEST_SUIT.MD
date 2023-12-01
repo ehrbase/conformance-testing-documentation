@@ -77,6 +77,50 @@
 | DATA_STRUCTURE | 15 result;JSON with _type in (1 HISTORY ,14 ITEM_TREE) |
 | ELEMENT        | 68 result;JSON with _type = ELEMENT                    |
 
+## Test from EHR_STATUS
+### test from single ehr
+1. Create ehr with Status `status1.json` and save {ehr_id}
+2. Run the Query `Select s/{path} from EHR e contains EHR_STATUS s where e/ehr_id/value = '{ehr_id}'`
+
+| {path}                               | result                                                                                                                                              |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| is_modifiable                        | true                                                                                                                                                |
+| subject                              | json: { "external_ref": { "id": { "_type": "GENERIC_ID", "value": "ins1920", "scheme": "id_scheme" }, "namespace": "examples", "type": "PERSON" } } |
+| subject/external_ref/id/value        | ins1920                                                                                                                                             |
+| other_details/items[at0001]/value/id | 55175056                                                                                                                                            |
+
+### test from multiple ehrs
+1. Create ehr with Status `status1.json` 
+2. Create ehr with Status `status2.json` 
+3. Run the Query `Select s/subject/external_ref/id/value, s/other_details/items[at0001]/value/id   from EHR e contains EHR_STATUS s`
+4. check result `{ins1920,55175056}, {ins1921,55175057}`
+
+### test via part 
+1. Create ehr with Status `status1.json` and save {ehr_id}
+2. Run the Query `Select e/ehr_status/{path} from EHR e where e/ehr_id/value = '{ehr_id}'`
+
+| {path}                               | result                                                                                                                                              |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| is_modifiable                        | true                                                                                                                                                |
+| subject                              | json: { "external_ref": { "id": { "_type": "GENERIC_ID", "value": "ins1920", "scheme": "id_scheme" }, "namespace": "examples", "type": "PERSON" } } |
+| subject/external_ref/id/value        | ins1920                                                                                                                                             |
+| other_details/items[at0001]/value/id | 55175056                                                                                                                                            |
+
+### contains 
+
+1. Upload `ehrbase_blood_pressure_simple.de.v0.opt` if not exist
+2. Create ehr with Status `status1.json` and save {ehr_id}
+3. Create composition `ehrbase_blood_pressure_simple.de.v0.json`
+4. Run the Query `Select l/name/value from EHR e contains {contains}'`
+
+| {contains}                    | result                                                                                                                                                 |
+|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| EHR_STATUS contains ELEMENT l | "family group id"                                                                                                                                      |
+| ELEMENT l [at0001]            | "family group id"                                                                                                                                      |
+| ELEMENT l [at0013]            | "Cuff size"                                                                                                                                            |
+| ELEMENT l                     | "family group id","Cuff size","Location of measurement","Korotkoff sounds", "Systolic", "Diastolic" ,"Mean Arterial Pressure","Mean Arterial Pressure" |
+
+
 ## Test FROM Predicate [Predicate A - D](https://vitagroup-ag.atlassian.net/wiki/spaces/PEN/pages/38216361/Architecture+-+AQL+Feature+List#Predicates)   
 
 ### Without Predicate 

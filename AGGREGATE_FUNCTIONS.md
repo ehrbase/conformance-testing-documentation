@@ -98,7 +98,7 @@
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
-4. Run Query 'Select `SELECT MAX({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] and where {path} != {where} `
+4. Run Query 'Select `SELECT MAX({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] where {path} != {where} `
 
 | path                                                                        | where          | result              |
 |-----------------------------------------------------------------------------|----------------|---------------------|

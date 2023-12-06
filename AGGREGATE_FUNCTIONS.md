@@ -21,7 +21,7 @@
 
 | path                                                                        | result |
 |-----------------------------------------------------------------------------|--------|
-| *                                                                           | 3      |
+| *                                                                           | 1      |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value        | 3      |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value/value        | 3      |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/units        | 2      |
@@ -62,7 +62,7 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value        | "Lorem ipsum3"      |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value/value        | "term1"             |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/units        | "mm"                |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude    | 80.2                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude    | 82.0                |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/null_flavour/value | "unknown"           |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude    | 400,                |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value/value        | 2023-02-03T04:05:06 |
@@ -78,8 +78,8 @@
 
 | path                                                                     | result |
 |--------------------------------------------------------------------------|--------|
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 102.2  |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 492    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 104.0  |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 493    |
 
 ### AVG
 1. Upload `conformance-ehrbase.de.v0` if not exist
@@ -89,7 +89,7 @@
 
 | path                                                                     | result |
 |--------------------------------------------------------------------------|--------|
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 51.1   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 52.0   |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 143    |
 
 

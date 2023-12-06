@@ -16,7 +16,7 @@
 ### count on paths
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
-3. Create composition  `conformance_ehrbase.de.v0_max.json`
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
 4. Run Query 'Select `SELECT COUNT({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
 | path                                                                        | result |
@@ -35,7 +35,7 @@
 ### MIN
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
-3. Create composition  `conformance_ehrbase.de.v0_max.json`
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
 4. Run Query 'Select `SELECT MIN({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
 | path                                                                        | result              |
@@ -54,7 +54,7 @@
 ### MAX
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
-3. Create composition  `conformance_ehrbase.de.v0_max.json`
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
 4. Run Query 'Select `SELECT MAX({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
 | path                                                                        | result              |
@@ -73,24 +73,24 @@
 ### SUM
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
-3. Create composition  `conformance_ehrbase.de.v0_max.json`
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
 4. Run Query 'Select `SELECT SUM({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
 | path                                                                     | result |
 |--------------------------------------------------------------------------|--------|
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 102.2  |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 484    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 492    |
 
 ### AVG
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
-3. Create composition  `conformance_ehrbase.de.v0_max.json`
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
 4. Run Query 'Select `SELECT AVG({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
 | path                                                                     | result |
 |--------------------------------------------------------------------------|--------|
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 51.1   |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 161    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 143    |
 
 
 ## aggregate function and where

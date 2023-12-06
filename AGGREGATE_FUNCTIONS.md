@@ -87,10 +87,10 @@
 3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
 4. Run Query 'Select `SELECT AVG({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
-| path                                                                     | result |
-|--------------------------------------------------------------------------|--------|
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 52.0   |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 143    |
+| path                                                                     | result               |
+|--------------------------------------------------------------------------|----------------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value/magnitude | 52.0                 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude | 164.3333333333333333 |
 
 
 ## aggregate function and where

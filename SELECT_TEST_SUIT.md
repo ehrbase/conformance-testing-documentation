@@ -132,7 +132,7 @@
 
 | path                                        | result                                        |
 |:--------------------------------------------|-----------------------------------------------|
-| items[at0003]/value/value                   | "Lorem ipsum", "Lorem ipsum2" , NULL          |
+| items[at0003]/value/value                   | "Lorem ipsum", "Lorem ipsum2" , NULL (for first query, don't expect NULL value)          |
 | items[at0005]/value/value                   | "Lorem ipsum", "Lorem ipsum2", "Lorem ipsum3" |
 | feeder_audit/originating_system_item_ids/id | json with type FEEDER_AUDIT , NULL, NULL      |
 | feeder_audit/originating_system_item_ids/id | "id1","id2", NULL, NULL                       |

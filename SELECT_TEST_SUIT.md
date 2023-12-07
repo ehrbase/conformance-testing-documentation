@@ -43,7 +43,7 @@
 5. 4 Rows :
 
    | p/time/value        |
-            |---------------------|
+   |---------------------|
    | 2022-02-03T04:05:06 |
    | 2023-02-03T04:05:06 |
    | 2024-02-03T04:05:06 |
@@ -94,7 +94,7 @@
 
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
-3. Create composition  `conformance_ehrbase.de.v0_max.json`
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
 4. Run Query 'Select `SELECT {path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
 | path                                                                        | result                                                                                                                                 |
@@ -106,7 +106,7 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/null_flavour/value | "unknown", NULL, NULL                                                                                                                  |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value/numerator    | 42.0,40.0,20.0                                                                                                                         |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value/denominator  | 3.0,2.0,2.0                                                                                                                            |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude    | 42,400,42                                                                                                                              |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude    | 42,400,51                                                                                                                              |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value/value        | 2022-02-03T04:05:06, 2023-02-03T04:05:06,2022-02-03T04:05:06                                                                           |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value/value        | 04:05:06,05:05:06,04:05:06                                                                                                             |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value/value        | 2022-02-03,2023-02-03,2022-02-03                                                                                                       |
@@ -117,13 +117,13 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0025]/value/value        | "ehr:/.","ehr:/.","ehr:/."                                                                                                             |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0026]/value/size         | 3 x 504903212                                                                                                                          |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0027]/value/value        | 3 x "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Hello World</title></head><body>Hello World!</body></html>" |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0027]/value/value        | 3 x " "https://www.example.com/sample""                                                                                                |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0028]/value/value        | 3 x " "https://www.example.com/sample""                                                                                                |
 
 ### Path from Entry to Data value in Cluster
 
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
-3. Create composition  `conformance_ehrbase.de.v0_max.json`
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
 4. Run Query '
    Select `SELECT o/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.conformance_cluster.v0]/{path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 5. Run Query '
@@ -132,10 +132,24 @@
 
 | path                                        | result                                        |
 |:--------------------------------------------|-----------------------------------------------|
-| items[at0003]/value/value                   | "Lorem ipsum", "Lorem ipsum2" , NULL          |
 | items[at0005]/value/value                   | "Lorem ipsum", "Lorem ipsum2", "Lorem ipsum3" |
 | feeder_audit/originating_system_item_ids/id | json with type FEEDER_AUDIT , NULL, NULL      |
 | feeder_audit/originating_system_item_ids/id | "id1","id2", NULL, NULL                       |
+
+###  Null Value in  select
+
+1. Upload `conformance-ehrbase.de.v0` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
+4. Run Query
+
+| path                                                                                                                                                                                                                                                                                                                         | result                                                                     |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| SELECT o/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.conformance_cluster.v0]/items[at0003]/value/value FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0]                                                                                                                        | "Lorem ipsum", "Lorem ipsum2"                                              |
+| SELECT o/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.conformance_cluster.v0]/items[at0003]/value/value,o/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.conformance_cluster.v0]/items[at0005]/value/value FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] | "Lorem ipsum,Lorem ipsum", "Lorem ipsum2,Lorem ipsum3","null,Lorem ipsum2" |
+| SELECT c/items[at0003]/value/value FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] contains Cluster c [openEHR-EHR-CLUSTER.conformance_cluster.v0]                                                                                                                                                   | "Lorem ipsum", "Lorem ipsum2", null                                        |
+
+
 
 ### Array valued paths
 

@@ -36,7 +36,7 @@
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
-4. Run Query 'Select `SELECT MIN({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
+4. Run Query 'Select `SELECT MIN({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0]`
 
 | path                                                                        | result              |
 |-----------------------------------------------------------------------------|---------------------|
@@ -55,7 +55,7 @@
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
-4. Run Query 'Select `SELECT MAX({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
+4. Run Query 'Select `SELECT MAX({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0]`
 
 | path                                                                        | result              |
 |-----------------------------------------------------------------------------|---------------------|
@@ -74,7 +74,7 @@
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
-4. Run Query 'Select `SELECT SUM({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
+4. Run Query 'Select `SELECT SUM({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0]`
 
 | path                                                                     | result |
 |--------------------------------------------------------------------------|--------|
@@ -85,7 +85,7 @@
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
-4. Run Query 'Select `SELECT AVG({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
+4. Run Query 'Select `SELECT AVG({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0]`
 
 | path                                                                     | result               |
 |--------------------------------------------------------------------------|----------------------|
@@ -98,7 +98,7 @@
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
-4. Run Query 'Select `SELECT MAX({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] where {path} != {where} `
+4. Run Query 'Select `SELECT MAX({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] where {path} != {where}`
 
 | path                                                                        | where          | result              |
 |-----------------------------------------------------------------------------|----------------|---------------------|
@@ -106,3 +106,37 @@
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value/value        | "term1"        | null                |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value/magnitude    | 400            | 42                  |
 
+## aggregate function on DV_ORDERED
+### MIN ON DV_ORDERED
+1. Upload `conformance-ehrbase.de.v0` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
+4. Run Query 'Select `SELECT MIN({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0]`
+
+| path                                                           | result                                                          |
+|----------------------------------------------------------------|-----------------------------------------------------------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value | DV_QUANTITY with magnitude=22.0 units=mm                        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value | DV_PROPORTION with numerator=20.0 denominator=2.0 type=3        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value | DV_COUNT with magnitude=42                                      |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value | DV_DATE_TIME with value=2022-02-03T04:05:06                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value | DV_TIME with value=04:05:06                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value | DV_DATE with value=2022-02-03                                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value | DV_ORDINAL with value=1 terminology_id=local code_string=at0015 |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0018]/value | DV_DURATION with value=PT0S                                     |
+
+### MAX ON DV_ORDERED
+1. Upload `conformance-ehrbase.de.v0` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max_v3.json`
+4. Run Query 'Select `SELECT MAX({path}) FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0]`
+
+| path                                                           | result                                                          |
+|----------------------------------------------------------------|-----------------------------------------------------------------|
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value | DV_QUANTITY with magnitude=82.0 unites=mm                       |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value | DV_PROPORTION with numerator=40.0 denominator=2.0 type=3        |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value | DV_COUNT with magnitude=400                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value | DV_DATE_TIME with value=2023-02-03T04:05:06)                    |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value | DV_TIME with value=05:05:06                                     |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value | DV_DATE with value=2023-02-03                                   |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0014]/value | DV_ORDINAL with value=2 terminology_id=local code_string=at0016 | 
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0018]/value | DV_DURATION with value=PT6M40S                                     |

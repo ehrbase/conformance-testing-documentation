@@ -262,7 +262,7 @@ Run tests for path value on compositions for template `openEHR-EHR-COMPOSITION.p
 | cv/commit_audit/change_type/defining_code/preferred_term       | WHERE {path} = 'creation'                           | ORDER BY {path}      | creation                                                                                                       |
 | cv/commit_audit/change_type/defining_code/terminology_id/value | WHERE {path}  > 'open'                              |                      | ["openehr"], ["openehr"], ["openehr"], ["openehr"]                                                             |
 | cv/uid/value, cv/commit_audit/description                      | WHERE cv/uid/value = '`{comp_id_1_1}`'              |                      | [./version/composition.version.latest.commit_audit.json](version/composition.version.latest.commit_audit.json) |
-| cv/commit_audit/description                                    | WHERE {path} = '&lt;optional audit description&gt;' | ORDER BY {path} ASC  | <optional audit description>                                                                                   |
+| cv/commit_audit/description/value                              | WHERE {path} = '&lt;optional audit description&gt;' | ORDER BY {path} ASC  | optional audit description                                                                                     |
 
 
 ## VERSION\[LATEST_VERSION\] CONTAINS OBSERVATION
@@ -362,4 +362,4 @@ Run tests for path value on compositions for template `openEHR-EHR-COMPOSITION.p
 | cv/commit_audit/change_type/defining_code/preferred_term       | WHERE {path} = 'creation'                            | ORDER BY {path}      | creation                                                                                                       |
 | cv/commit_audit/change_type/defining_code/terminology_id/value | WHERE {path}  > 'open'                               |                      | ["openehr"], ["openehr"], ["openehr"], ["openehr"]                                                             |
 | cv/uid/value, cv/commit_audit/description                      | WHERE cv/uid/value = '`{comp_id_1_1}`'               |                      | [./version/composition.version.latest.commit_audit.json](version/composition.version.latest.commit_audit.json) |
-| cv/commit_audit/description                                    | WHERE {path} = '&lt;optional audit description&gt;'  | ORDER BY {path} DESC | <optional audit description>                                                                                   |
+| cv/commit_audit/description/value                              | WHERE {path} = '&lt;optional audit description&gt;'  | ORDER BY {path} DESC | optional audit description                                                                                     |

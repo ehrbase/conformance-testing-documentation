@@ -211,12 +211,81 @@
 
 ## Drill down along paths
 
+### Drill down EHR
+
+1. Create ehr using template `test_data_sets/ehr/valid/000_ehr_status_with_other_details.json` as {ehr_id}
+2. Save `time_created/value` as {ehr_time_created}.
+3. Save `ehr_status/uid/value` as {ehr_status_id}
+4. Run query Select `SELECT {path} FROM EHR e`
+
+| path                                                   | result                                                                                                                                                                                                                      |
+|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| e                                                      | one row with type EHR                                                                                                                                                                                                       |
+| e/ehr_id/value                                         | one row with `{ehr_id}`                                                                                                                                                                                                     |
+| e/system_id                                            | one row with '''{"_type": "HIER_OBJECT_ID", "value": "local.ehrbase.org"}'''                                                                                                                                                |
+| e/system_id/value                                      | one row with "local.ehrbase.org"                                                                                                                                                                                            |
+| e/time_created                                         | one row width '''{"_type": "DV_DATE_TIME", "value": `{ehr_time_created}`}'''                                                                                                                                                |
+| e/time_created/value                                   | one row with `{ehr_time_created}`                                                                                                                                                                                           |
+| e/ehr_status                                           | one row with type EHR_STATUS                                                                                                                                                                                                |
+| e/ehr_status/archetype_node_id                         | one row with "openEHR-EHR-EHR_STATUS.generic.v1"                                                                                                                                                                            |
+| e/ehr_status/is_queryable                              | one row width `true`                                                                                                                                                                                                        |
+| e/ehr_status/is_modifiable                             | one row width `true`                                                                                                                                                                                                        |
+| e/ehr_status/name                                      | one row width '''{"_type": "DV_TEXT", "value": "EHR Status"}'''                                                                                                                                                             |
+| e/ehr_status/name/value                                | one row with "EHR Status"                                                                                                                                                                                                   |
+| e/ehr_status/other_details/name                        | one row width '''{"_type": "DV_TEXT", "value": "family group"}'''                                                                                                                                                           |
+| e/ehr_status/other_details/name/value                  | one row width "family group"                                                                                                                                                                                                |
+| e/ehr_status/other_details/item[at0001]/value/type     | one row width "FAMILY_GROUP_ID"                                                                                                                                                                                             |
+| e/ehr_status/other_details/item[at0001]/value/id       | one row width "55175056"                                                                                                                                                                                                    |
+| e/ehr_status/other_details/item[at0001]/value/issuer   | one row width "MoH"                                                                                                                                                                                                         |
+| e/ehr_status/other_details/item[at0001]/value/assigner | one row width "MoH"                                                                                                                                                                                                         |
+| e/ehr_status/other_details/item[at0001]/name/value     | one row width "family group id"                                                                                                                                                                                             |
+| e/ehr_status/subject                                   | one row width '''{"_type": "PARTY_SELF", "external_ref": {"_type": "PARTY_REF", "namespace": "patients", "type": "PERSON", "id": { "_type": "GENERIC_ID", "value": "__AUTO-GENRATED-BY-TEST__", "scheme": "id_scheme"}}}''' |
+| e/ehr_status/subject/external_ref                      | one row width '''{"_type": "PARTY_REF", "namespace": "patients", "type": "PERSON", "id": {"_type": "GENERIC_ID", "value": "__AUTO-GENRATED-BY-TEST__", "scheme": "id_scheme"}}'''                                           |
+| e/ehr_status/subject/external_ref/namespace            | one row with "patients"                                                                                                                                                                                                     |
+| e/ehr_status/subject/external_ref/type                 | one row with "PERSON"                                                                                                                                                                                                       |
+| e/ehr_status/subject/external_ref/id                   | one row width '''{"_type": "GENERIC_ID", "value": "__AUTO-GENRATED-BY-TEST__", "scheme": "id_scheme"}'''                                                                                                                    |
+| e/ehr_status/subject/external_ref/id/value             | one row with "__AUTO-GENRATED-BY-TEST__"                                                                                                                                                                                    |
+| e/ehr_status/subject/external_ref/id/scheme            | one row with "id_scheme"                                                                                                                                                                                                    |
+| e/ehr_status/uid                                       | one row width '''{"_type": "OBJECT_VERSION_ID", "value": `{ehr_status_id}`}'''                                                                                                                                              |
+| e/ehr_status/uid/value                                 | one row width `{ehr_status_id}`                                                                                                                                                                                             |
+
+### Drill down EHR_STATUS
+
+1. Create ehr using template `test_data_sets/ehr/valid/000_ehr_status_with_other_details.json` 
+2. Save `ehr_status/uid/value` as {ehr_status_id}
+3. Run query Select `SELECT {path} FROM EHR_STATUS es`
+
+| path                                         | result                                                                                                                                                                                                                      |
+|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| es                                           | one row with type EHR_STATUS                                                                                                                                                                                                |
+| es/archetype_node_id                         | one row with "openEHR-EHR-EHR_STATUS.generic.v1"                                                                                                                                                                            |
+| es/is_queryable                              | one row width `true`                                                                                                                                                                                                        |
+| es/is_modifiable                             | one row width `true`                                                                                                                                                                                                        |
+| es/name                                      | one row width '''{"_type": "DV_TEXT", "value": "EHR Status"}'''                                                                                                                                                             |
+| es/name/value                                | one row with "EHR Status"                                                                                                                                                                                                   |
+| es/other_details/name                        | one row width '''{"_type": "DV_TEXT", "value": "family group"}'''                                                                                                                                                           |
+| es/other_details/name/value                  | one row width "family group"                                                                                                                                                                                                |
+| es/other_details/item[at0001]/value/type     | one row width "FAMILY_GROUP_ID"                                                                                                                                                                                             |
+| es/other_details/item[at0001]/value/id       | one row width "55175056"                                                                                                                                                                                                    |
+| es/other_details/item[at0001]/value/issuer   | one row width "MoH"                                                                                                                                                                                                         |
+| es/other_details/item[at0001]/value/assigner | one row width "MoH"                                                                                                                                                                                                         |
+| es/other_details/item[at0001]/name/value     | one row width "family group id"                                                                                                                                                                                             |
+| es/subject                                   | one row width '''{"_type": "PARTY_SELF", "external_ref": {"_type": "PARTY_REF", "namespace": "patients", "type": "PERSON", "id": { "_type": "GENERIC_ID", "value": "__AUTO-GENRATED-BY-TEST__", "scheme": "id_scheme"}}}''' |
+| es/subject/external_ref                      | one row width '''{"_type": "PARTY_REF", "namespace": "patients", "type": "PERSON", "id": {"_type": "GENERIC_ID", "value": "__AUTO-GENRATED-BY-TEST__", "scheme": "id_scheme"}}'''                                           |
+| es/subject/external_ref/namespace            | one row with "patients"                                                                                                                                                                                                     |
+| es/subject/external_ref/type                 | one row with "PERSON"                                                                                                                                                                                                       |
+| es/subject/external_ref/id                   | one row width '''{"_type": "GENERIC_ID", "value": "__AUTO-GENRATED-BY-TEST__", "scheme": "id_scheme"}'''                                                                                                                    |
+| es/subject/external_ref/id/value             | one row with "__AUTO-GENRATED-BY-TEST__"                                                                                                                                                                                    |
+| es/subject/external_ref/id/scheme            | one row with "id_scheme"                                                                                                                                                                                                    |
+| es/uid                                       | one row width '''{"_type": "OBJECT_VERSION_ID", "value": `{ehr_status_id}`}'''                                                                                                                                              |
+| es/uid/value                                 | one row width `{ehr_status_id}`                                                                                                                                                                                             |
+
 ### Drill down EVENT-CONTEXT
 
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
-4. Run Query 'Select `SELECT {path} FROM EVENT_CONTEXT c`
+4. Run Query Select `SELECT {path} FROM EVENT_CONTEXT c`
 
 | path                                         | result                                                                                                                                                                                                           |
 |----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -238,7 +307,7 @@
 1. Upload `conformance-ehrbase.de.v0` if not exist
 2. Create ehr
 3. Create composition  `conformance_ehrbase.de.v0_max.json`
-4. Run Query 'Select `SELECT {path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
+4. Run Query Select `SELECT {path} FROM OBSERVATION o [openEHR-EHR-OBSERVATION.conformance_observation.v0] `
 
 | path                                                                                       | result                                                                                                                                                                                                                  |
 |--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -260,23 +329,6 @@
 | o/data[at0001]/events[at0002]/data[at0003]                                                 | 3  row with  type ITEM_TREE                                                                                                                                                                                             |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]                                   | 3  row with  type Element                                                                                                                                                                                               |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value                             | 3  row with  type DV_TEXT exactly one with mapping != null                                                                                                                                                              |
-| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value                       | "Lorem ipsum", "Lorem ipsum2", "Lorem ipsum3"                                                                                                                                                                           |
+| o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/value                       | 3  row with  "Lorem ipsum", "Lorem ipsum2", "Lorem ipsum3"                                                                                                                                                              |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/mappings                    | 4  row with  with 2 not null json and 2 null                                                                                                                                                                            |
 | o/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/mappings/target/code_string | 4  row with  with 21794005,21794000, null, null                                                                                                                                                                         |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

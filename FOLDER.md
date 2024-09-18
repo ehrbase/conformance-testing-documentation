@@ -6,7 +6,7 @@
 
 1. Create ehr
 2. Create directory `folder_simple_hierarchy`
-3. Run Query `SELECT f/uid/value, f/name/value, f/name/value ,f/archetype_node_id from FOLDER f`
+3. Run Query `SELECT f/uid/value, f/name/value, f/archetype_node_id from FOLDER f`
 4. check result is in any order
 
 | f/uid/value                          | f/name/value  | f/archetype_node_id                   |

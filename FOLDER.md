@@ -78,7 +78,7 @@
 3. Create ehr and save {ehr_id2}
 4. Create directory `folder_complex_hierarchy2`
 5. Run Query
-   `SELECT  e/uid/value , f/uid/value from EHR e contains FOLDER f[openEHR-EHR-FOLDER.episode_of_care.v1,'subsubfolder1']`
+   `SELECT  e/ehr_id/value, f/uid/value FROM EHR e CONTAINS FOLDER f[openEHR-EHR-FOLDER.episode_of_care.v1,'subsubfolder1']`
 6. Check result is in any order
 
 | e/uid/value | f/uid/value                          |

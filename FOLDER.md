@@ -61,8 +61,7 @@
 
 1. Create ehr
 2. Create directory `folder_complex_hierarchy`
-3. Run Query `SELECT f2/uid/value, f2/name/value from FOLDER f1[{predicate1}] contains Folder f2 FOLDER
-   f1[{predicate2}]`
+3. Run Query `SELECT f2/uid/value, f2/name/value FROM FOLDER f1[{predicate1}] CONTAINS FOLDER f2[{predicate2}]`
 
 | {predicate1}                               | {predicate2}                                          | Result                                                                                                                                                                                                                     |
 |--------------------------------------------|-------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

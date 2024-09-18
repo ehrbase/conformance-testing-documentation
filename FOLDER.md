@@ -9,7 +9,7 @@
 3. Run Query `SELECT f/uid/value, f/name/value, f/name/value ,f/archetype_node_id from FOLDER f`
 4. check result is in any order
 
-| f/uid/value                         | f/name/value  | f/archetype_node_id                   |
+| f/uid/value                          | f/name/value  | f/archetype_node_id                   |
 |--------------------------------------|---------------|---------------------------------------|
 | 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1         | openEHR-EHR-FOLDER.generic.v1         |
 | d936409e-901f-4994-8d33-ed104d460151 | subfolder1    | openEHR-EHR-FOLDER.generic.v1         |
@@ -23,7 +23,7 @@
 4. check for each parameter
 
    | {name}        | f/uid/value                         |
-   |---------------|--------------------------------------|
+      |---------------|--------------------------------------|
    | root1         | 10e952ca-a5b2-4f24-8d37-59240fd37020 |
    | subfolder1    | d936409e-901f-4994-8d33-ed104d460151 |
    | subsubfolder1 | 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 |
@@ -44,7 +44,7 @@
 3. Run Query "SELECT f1/uid/value, f1/name/value,f2/uid/value, f2/name/value from FOLDER f1 contains Folder f2"
 4. Check result contains in any order
 
-| f1/uid/value                        | f1/name/value | f2/uid/value                        | f2/name/value |
+| f1/uid/value                         | f1/name/value | f2/uid/value                         | f2/name/value |
 |--------------------------------------|---------------|--------------------------------------|---------------|
 | 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1         | d936409e-901f-4994-8d33-ed104d460151 | subfolder1    |
 | 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1         | 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 | subsubfolder1 |
@@ -81,12 +81,12 @@
    `SELECT  e/uid/value , f/uid/value from EHR e contains FOLDER f[openEHR-EHR-FOLDER.episode_of_care.v1,'subsubfolder1']`
 6. Check result is in any order
 
-| e/uid/value | f/uid/value                         |
-|--------------|--------------------------------------|
-| {ehr_id1}    | 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 |
-| {ehr_id1}    | 13661fe2-1e16-4c75-a10d-9b8040487a72 |
-| {ehr_id2}    | 04689137-90bf-456b-8afc-7c5774843919 |
-| {ehr_id2}    | 59bbd141-c51b-435a-9cbb-85d953ebfcd3 |
+| e/uid/value | f/uid/value                          |
+|-------------|--------------------------------------|
+| {ehr_id1}   | 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 |
+| {ehr_id1}   | 13661fe2-1e16-4c75-a10d-9b8040487a72 |
+| {ehr_id2}   | 04689137-90bf-456b-8afc-7c5774843919 |
+| {ehr_id2}   | 59bbd141-c51b-435a-9cbb-85d953ebfcd3 |
 
 ## Contains COMPOSITION
 
@@ -103,19 +103,19 @@
 9. Check result is in any order
 
 | f/name/value     | c/uid/value |
-|------------------|--------------|
-| root1            | {comp_id1}   |
-| root1            | {comp_id2}   |
-| root1            | {comp_id3}   |
-| root1            | {comp_id4}   |
-| subfolder1       | {comp_id1}   |
-| subfolder1       | {comp_id2}   |
-| subfolder1       | {comp_id3}   |
-| subfolder1       | {comp_id4}   |
-| subsubfolder1    | {comp_id2}   |
-| subsubfolder1    | {comp_id4}   |
-| subsubfolder2    | {comp_id3}   |
-| subsubsubfolder1 | {comp_id4}   |
+|------------------|-------------|
+| root1            | {comp_id1}  |
+| root1            | {comp_id2}  |
+| root1            | {comp_id3}  |
+| root1            | {comp_id4}  |
+| subfolder1       | {comp_id1}  |
+| subfolder1       | {comp_id2}  |
+| subfolder1       | {comp_id3}  |
+| subfolder1       | {comp_id4}  |
+| subsubfolder1    | {comp_id2}  |
+| subsubfolder1    | {comp_id4}  |
+| subsubfolder2    | {comp_id3}  |
+| subsubsubfolder1 | {comp_id4}  |
 
 ### Select by name
 
@@ -158,20 +158,51 @@
 5. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id3}`.
 6. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id4}`.
 7. Create directory `folder_with_compositions.json` replacing the parameters
-8. Create ehr save {ehr_id2}
-9. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id1b}`.
-10. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id2b}`.
-11. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id3b}`.
-12. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id4b}`.
-13. Create directory `folder_with_compositions.json` replacing the parameters
-14. Run Query
+8. Create composition  `conformance_ehrbase.de.v0_max.json`
+9. Create ehr save {ehr_id2}
+10. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id1b}`.
+11. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id2b}`.
+12. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id3b}`.
+13. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id4b}`.
+14. Create directory `folder_with_compositions.json` replacing the parameters
+15. Create composition  `conformance_ehrbase.de.v0_max.json`
+16. Run Query
     `SELECT  e/ehr_id/value ,c/uid/value   from EHR e contains FOLDER f contains  COMPOSITION c where f/name/value = 'subsubsubfolder1'`
-15. Result in any order
+17. Result in any order
 
 | e/ehr_id/value | c/uid/value |
-|----------------|--------------|
-| ehr_id1}       | {comp_id4}   |
-| ehr_id2}       | {comp_id4b}  |
+|----------------|-------------|
+| ehr_id1}       | {comp_id4}  |
+| ehr_id2}       | {comp_id4b} |
+
+### multi comp in a folder
+1. Upload `conformance_ehrbase.de.v0.opt` if not exist
+2. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id1}`.
+3. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id2}`.
+4. Create directory `folder_multi_compositions` replacing the parameters
+5. Create composition  `conformance_ehrbase.de.v0_max.json`
+6. Run Query `SELECT  c/uid/value   from FOLDER f contains  COMPOSITION c`
+7. Result is in any order `{comp_id1}`,`{comp_id2}`
+
+## Select paths in folder
+
+### Select paths in folder
+
+1. Create ehr
+2. Create directory `folder_details`
+3. Run Query `SELECT {path} from FOLDER f`
+
+| {path}                                | result                                                                         |
+|---------------------------------------|--------------------------------------------------------------------------------|
+| f                                     | 2 rows with json of type folder                                                |
+| f/items/id/value                      | null,7c0a9df0-564f-4f34-8e65-92586c64ef56,c68131a3-72da-41fe-8d11-c4fccfd2d2d0 |
+| f/items                               | null,json arry with 2 elements                                                 |
+| f/details                             | 2 rows with json of type ITEM_TREE                                             |
+| f/details[at0003]/items[at0004]/value | value1,value2                                                                  |
+
+
+
+
 
 
 

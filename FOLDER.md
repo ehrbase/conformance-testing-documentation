@@ -193,11 +193,11 @@
 
 | {path}                                        | result                                                                         |
 |-----------------------------------------------|--------------------------------------------------------------------------------|
-| f                                     		| 2 rows with json of type folder                                                |
-| f/items/id/value                      		| null,7c0a9df0-564f-4f34-8e65-92586c64ef56,c68131a3-72da-41fe-8d11-c4fccfd2d2d0 |
-| f/items                               		| null,json arry with 2 elements                                                 |
-| f/details                             		| 2 rows with json of type ITEM_TREE                                             |
-| f/details[at0003]/items[at0004]/value/value	| value1,value2                                                                  |
+| f                                             | 2 rows with json of type folder                                                |
+| f/items/id/value                              | null,7c0a9df0-564f-4f34-8e65-92586c64ef56,c68131a3-72da-41fe-8d11-c4fccfd2d2d0 |
+| f/items                                       | null,json arry with 2 elements                                                 |
+| f/details                                     | 2 rows with json of type ITEM_TREE                                             |
+| f/details[at0003]/items[at0004]/value/value   | value1,value2                                                                  |
 
 
 

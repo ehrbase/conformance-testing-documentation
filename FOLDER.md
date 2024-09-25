@@ -37,7 +37,7 @@
 
    | f/uid/value                          | f/name/value | f/items/id/value                     |
    |--------------------------------------|--------------|--------------------------------------|
-   | 960a4fa1-6063-4da5-b5ab-fb68ee8950d3 | subfolder1   | 7c0a9df0-564f-4f34-8e65-92586c64ef56 |
+   | d936409e-901f-4994-8d33-ed104d460151 | subfolder1   | 7c0a9df0-564f-4f34-8e65-92586c64ef56 |
 
 
 ### Find by archetype

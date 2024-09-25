@@ -6,14 +6,14 @@
 
 1. Create ehr
 2. Create directory `folder_simple_hierarchy`
-3. Run Query `SELECT f/uid/value, f/name/value, f/archetype_node_id, f/items/id/value from FOLDER f`
+3. Run Query `SELECT f/uid/value, f/name/value, f/archetype_node_id FOLDER f`
 4. check result is in any order
 
-| f/uid/value                          | f/name/value  | f/archetype_node_id                   | f/items/id/value |
-|--------------------------------------|---------------|---------------------------------------|------------------|
-| 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1         | openEHR-EHR-FOLDER.generic.v1         |      null        |
-| d936409e-901f-4994-8d33-ed104d460151 | subfolder1    | openEHR-EHR-FOLDER.generic.v1         |      null        |
-| 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 | subsubfolder1 | openEHR-EHR-FOLDER.episode_of_care.v1 |      null        |
+| f/uid/value                          | f/name/value  | f/archetype_node_id                   |
+|--------------------------------------|---------------|---------------------------------------|
+| 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1         | openEHR-EHR-FOLDER.generic.v1         |
+| d936409e-901f-4994-8d33-ed104d460151 | subfolder1    | openEHR-EHR-FOLDER.generic.v1         |
+| 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 | subsubfolder1 | openEHR-EHR-FOLDER.episode_of_care.v1 |
 
 ### Find by name
 
@@ -28,16 +28,7 @@
    | subfolder1    | d936409e-901f-4994-8d33-ed104d460151 |
    | subsubfolder1 | 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 |
 
-### Find by specific item id - VERSIONED_COMPOSITION - HIER_OBJECT_ID
 
-1. Create ehr
-2. Create directory `folder_details`
-3. Run Query `SELECT f/uid/value, f/name/value, f/items/id/value FROM FOLDER f WHERE f/items/id/value = '7c0a9df0-564f-4f34-8e65-92586c64ef56'`
-4. Check result to be the same as below
-
-   | f/uid/value                          | f/name/value | f/items/id/value                     |
-   |--------------------------------------|--------------|--------------------------------------|
-   | d936409e-901f-4994-8d33-ed104d460151 | subfolder1   | 7c0a9df0-564f-4f34-8e65-92586c64ef56 |
 
 
 ### Find by archetype
@@ -188,12 +179,15 @@
 
 ### multi comp in a folder
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist
-2. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id1}`.
-3. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id2}`.
-4. Create directory `folder_multi_compositions` replacing the parameters
-5. Create composition  `conformance_ehrbase.de.v0_max.json`
-6. Run Query `SELECT  c/uid/value   from FOLDER f contains  COMPOSITION c`
-7. Result is in any order `{comp_id1}`,`{comp_id2}`
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id1}`.
+4. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id2}`.
+5. Create directory `folder_multi_compositions` replacing the parameters
+6. Create composition  `conformance_ehrbase.de.v0_max.json`
+7. Run Query `SELECT  c/uid/value   from FOLDER f contains  COMPOSITION c`
+8. Result is in any order `{comp_id1}`,`{comp_id2}`
+
+
 
 ## Select paths in folder
 
@@ -210,3 +204,30 @@
 | f/items                                       | null,json arry with 2 elements                                                 |
 | f/details                                     | 2 rows with json of type ITEM_TREE                                             |
 | f/details[at0003]/items[at0004]/value/value   | value1,value2                                                                  |
+
+### Find items
+
+1. Create ehr
+2. Upload `conformance_ehrbase.de.v0.opt` if not exist
+3. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id1}`.
+4. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id2}`.
+5. Create directory `folder_multi_compositions` replacing the parameters
+6. Create composition  `conformance_ehrbase.de.v0_max.json`
+7. Run Query `SELECT f/uid/value, f/name/value, f/archetype_node_id, f/items/id/value from FOLDER f`
+8. check result is in any order
+
+| f/uid/value                          | f/name/value | f/archetype_node_id           | f/items/id/value |
+|--------------------------------------|--------------|-------------------------------|------------------|
+| 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1        | openEHR-EHR-FOLDER.generic.v1 | {comp_id1}       |
+| 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1        | openEHR-EHR-FOLDER.generic.v1 | {comp_id2}       |
+
+### Find by specific item id - VERSIONED_COMPOSITION - HIER_OBJECT_ID
+
+1. Create ehr
+2. Create directory `folder_details`
+3. Run Query `SELECT f/uid/value, f/name/value, f/items/id/value FROM FOLDER f WHERE f/items/id/value = '7c0a9df0-564f-4f34-8e65-92586c64ef56'`
+4. Check result to be the same as below
+
+   | f/uid/value                          | f/name/value | f/items/id/value                     |
+      |--------------------------------------|--------------|--------------------------------------|
+   | d936409e-901f-4994-8d33-ed104d460151 | subfolder1   | 7c0a9df0-564f-4f34-8e65-92586c64ef56 |

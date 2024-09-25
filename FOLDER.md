@@ -198,20 +198,3 @@
 | f/items                                       | null,json arry with 2 elements                                                 |
 | f/details                                     | 2 rows with json of type ITEM_TREE                                             |
 | f/details[at0003]/items[at0004]/value/value   | value1,value2                                                                  |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

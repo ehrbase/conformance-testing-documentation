@@ -9,11 +9,11 @@
 3. Run Query `SELECT f/uid/value, f/name/value, f/archetype_node_id from FOLDER f`
 4. check result is in any order
 
-| f/uid/value                          | f/name/value  | f/archetype_node_id                   |
-|--------------------------------------|---------------|---------------------------------------|
-| 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1         | openEHR-EHR-FOLDER.generic.v1         |
-| d936409e-901f-4994-8d33-ed104d460151 | subfolder1    | openEHR-EHR-FOLDER.generic.v1         |
-| 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 | subsubfolder1 | openEHR-EHR-FOLDER.episode_of_care.v1 |
+| f/uid/value                          | f/name/value  | f/archetype_node_id                   | f/items/id/value |
+|--------------------------------------|---------------|---------------------------------------|------------------|
+| 10e952ca-a5b2-4f24-8d37-59240fd37020 | root1         | openEHR-EHR-FOLDER.generic.v1         |      null        |
+| d936409e-901f-4994-8d33-ed104d460151 | subfolder1    | openEHR-EHR-FOLDER.generic.v1         |      null        |
+| 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 | subsubfolder1 | openEHR-EHR-FOLDER.episode_of_care.v1 |      null        |
 
 ### Find by name
 
@@ -22,11 +22,23 @@
 3. Run Query `SELECT f/uid/value from FOLDER f where f/name/value = {name}`
 4. check for each parameter
 
-   | {name}        | f/uid/value                         |
-      |---------------|--------------------------------------|
+   | {name}        | f/uid/value                          |
+   |---------------|--------------------------------------|
    | root1         | 10e952ca-a5b2-4f24-8d37-59240fd37020 |
    | subfolder1    | d936409e-901f-4994-8d33-ed104d460151 |
    | subsubfolder1 | 0cc504b1-4d6d-4cd5-81d9-0ef1b870edb3 |
+
+### Find by specific item id - VERSIONED_COMPOSITION - HIER_OBJECT_ID
+
+1. Create ehr
+2. Create directory `folder_details`
+3. Run Query `SELECT f/uid/value, f/name/value, f/items/id/value FROM FOLDER f WHERE f/items/id/value = '7c0a9df0-564f-4f34-8e65-92586c64ef56'`
+4. Check result to be the same as below
+
+   | f/uid/value                          | f/name/value | f/items/id/value                     |
+   |--------------------------------------|--------------|--------------------------------------|
+   | 960a4fa1-6063-4da5-b5ab-fb68ee8950d3 | subfolder1   | 7c0a9df0-564f-4f34-8e65-92586c64ef56 |
+
 
 ### Find by archetype
 

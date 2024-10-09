@@ -132,12 +132,12 @@
 2. Create directory `folder_complex_hierarchy`
 3. Create ehr and save {ehr_id2}
 4. Create directory `folder_complex_hierarchy2`
-5. Run Query `SELECT e/ehr_id/value, f/uid/value FROM EHR e CONTAINS FOLDER f WHERE e/ehr_id/value = {ehr_id1} AND f/uid/value = '13661fe2-1e16-4c75-a10d-9b8040487a72'`
+5. Run Query `SELECT e/ehr_id/value, f/name/value, f/uid/value FROM EHR e CONTAINS FOLDER f WHERE e/ehr_id/value = {ehr_id1} AND f/uid/value = 'd936409e-901f-4994-8d33-ed104d460151'`
 6. Check result is in any order
 
-| e/uid/value | f/uid/value                          |
-|-------------|--------------------------------------|
-| {ehr_id1}   | 13661fe2-1e16-4c75-a10d-9b8040487a72 |
+| e/uid/value | f/name/value | f/uid/value                           |
+|-------------|--------------|---------------------------------------|
+| {ehr_id1}   | subfolder1   | d936409e-901f-4994-8d33-ed104d460151  |
 
 
 

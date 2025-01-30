@@ -138,6 +138,25 @@
 | subsubfolder2    | {comp_id3}                                     |
 | subsubsubfolder1 | {comp_id4}                                     |
 
+### Select with version
+
+1. Upload `conformance_ehrbase.de.v0.opt` if not exist
+2. Create ehr
+3. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id1}`.
+4. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id2}`.
+5. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id3}`.
+6. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id4}`.
+7. Create directory `folder_with_compositions.json` replacing the parameters
+8. Run Query `SELECT  c/uid/value, cv0/commit_audit/time_committed/value   from FOLDER f contains CONTAINS VERSION cv0[LATEST_VERSION]  COMPOSITION c where f/name/value = {name}`
+
+| {name}           | result in any order                                                                                    |
+|------------------|--------------------------------------------------------------------------------------------------------|
+| root1            | {comp_id1,creation_date} ,{comp_id2,creation_date} ,{comp_id3,creation_date} ,{comp_id4,creation_date} |
+| subfolder1       | {comp_id1,creation_date} ,{comp_id2,creation_date} ,{comp_id3,creation_date} ,{comp_id4,creation_date} |
+| subsubfolder1    | {comp_id2,creation_date} ,{comp_id4,creation_date}                                                     |
+| subsubfolder2    | {comp_id3,creation_date}                                                                               |
+| subsubsubfolder1 | {comp_id4,creation_date}                                                                               |
+
 ### Folder in Folder
 
 1. Upload `conformance_ehrbase.de.v0.opt` if not exist

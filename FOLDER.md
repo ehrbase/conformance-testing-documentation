@@ -147,7 +147,7 @@
 5. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id3}`.
 6. Create composition  `conformance_ehrbase.de.v0_max.json` and save `{comp_id4}`.
 7. Create directory `folder_with_compositions.json` replacing the parameters
-8. Run Query `SELECT  c/uid/value, cv0/commit_audit/time_committed/value   from FOLDER f contains CONTAINS VERSION cv0[LATEST_VERSION]  COMPOSITION c where f/name/value = {name}`
+8. Run Query `SELECT c/uid/value, cv0/commit_audit/time_committed/value FROM FOLDER f CONTAINS VERSION cv0[LATEST_VERSION] CONTAINS COMPOSITION c WHERE f/name/value = {name}`
 
 | {name}           | result in any order                                                                                    |
 |------------------|--------------------------------------------------------------------------------------------------------|
